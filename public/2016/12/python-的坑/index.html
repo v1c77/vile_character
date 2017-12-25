@@ -1,0 +1,1416 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.31 with theme Tranquilpeak 0.4.3-BETA">
+    <title>python 的坑 </title>
+    <meta name="author" content="woailuoli993">
+    <meta name="keywords" content=", vici, blog, heyuhua.com">
+
+    <link rel="icon" href="//qiniu.heyuhua.com/blog_favicon.ico">
+    
+
+    
+    <meta name="description" content="生死怎能看淡, 不服就是要干
+">
+    <meta property="og:description" content="生死怎能看淡, 不服就是要干
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="python 的坑 ">
+    <meta property="og:url" content="/2016/12/python-%E7%9A%84%E5%9D%91/">
+    <meta property="og:site_name" content="vici&#39;blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="vici&#39;blog">
+    <meta name="twitter:description" content="生死怎能看淡, 不服就是要干
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="vile.heyuhua.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88015219-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="vile.heyuhua.com/">vici&#39;blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="vile.heyuhua.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="vile.heyuhua.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">woailuoli993</h4>
+        
+          <h5 class="sidebar-profile-bio">极度选择困难. <strong>懒癌晚期</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/woailuoli993" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/6382035/vi-ci" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      python 的坑 
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-12-15T16:17:05Z">
+        
+  十二月 15, 2016
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>生死怎能看淡, 不服就是要干
+</p>
+
+<h2 id="一-亲身经历">一. 亲身经历</h2>
+
+<blockquote>
+<p>python 是我第一个拿出10分认真的态度去学习的语言.</p>
+</blockquote>
+
+<p>但是可能需要12分的认真。因为周围毕竟还有一些十分认真的人在尝试着用她解决问题。之前零零散散的坑笔记也懒得往过搬了。</p>
+
+<blockquote>
+<h2 id="python2-对-range-的想法">python2： 对 <em>range</em> 的想法</h2>
+</blockquote>
+
+<ul>
+<li><p>于 2016年12月15日16:26:12</p>
+
+<ul>
+<li><p>一个小时前CTO大人（以下简称杰哥）过来找我说一个很奇怪的问题：同一个脚本检索两台数据库，一台国内一台国外，国外的没出问题，国内的时不时报错。
+（讲道理我的第一反应是&hellip;觉得国外的服务器香一些。。。）</p></li>
+
+<li><p>登到监控服务器 vi+ pdb 一顿调试，问题出在了神奇的地方：</p></li>
+</ul></li>
+</ul>
+
+<pre><code class="language-python"># python伪代码
+
+with open('file/to/path', 'r') as f:
+    localfsize = getsize(f)
+    for i in range(1, localfsize, 1):
+        f.seek(size-i)
+        # dosomething..,
+        pass
+</code></pre>
+
+<p>第一次运行 <code>for i in range</code> 就报出memeryError，很自然的想到是range.</p>
+
+<p>因为python2 的range 返回的还是一个完整的数组， 而推荐使用的<code>xrange</code> 返回的是一个生成器，占用内存空间更小.</p>
+
+<p>一开始我是拒绝的，因为之前一直都是懒的多写那个<code>x</code>,因为本屁民觉得在2016年的今天，一个多占了几mb内存的range并不可能发生内存溢出错误</p>
+
+<p>像我们这种土豪公司，开发机都是4核8线程 64g内存，怎么可能运行个脚本会发生内存错误？</p>
+
+<p>它真的发生了：</p>
+
+<p>这个故事发生在一个十分尴尬的环境，杰哥把脚本跑在了他自己的开车服务器（aws大流量1g内存1核），
+整个脚本的流程是开两个线程，分别从国内集群和国外集群的log_db上查询 &gt;&gt; 增量追加到内部处理log。</p>
+
+<p>一个本地日志文件大概是300mb-1g不等的样子。
+没错，日志很大，,但又恰好都没有到造成内存溢出的程度，所以就愉快的继续运行了，到了<code>range</code> 这里，localfilesize刚好是一个千万级别的整形数字（假设为1kw），即使是按c的计算方法，不考虑堆栈大小，在内存重要占用空间为：</p>
+
+<pre><code class="language-python"># 顺便说一句python 3.6 新功能:写长数字时可以在中间加下划线`_` ,方便阅读
+4 × 1000_0000 = 4000_0000B = 40000KB = 40MB
+
+</code></pre>
+
+<p>同事脑补了触发memoryERROR 两种可能:1. 这个大数组挤爆了栈空间  | 2. 它成了挤爆内存的最后一根稻草</p>
+
+<ul>
+<li>于 2016年12月15日20:54:08</li>
+</ul>
+
+<p>上面的脑补不是很靠谱，刚才又做了一堆测试，发现了更多的问题。</p>
+
+<ul>
+<li><p>测试过程</p>
+
+<ul>
+<li><p>偷了台实验室的计算服务器 :D</p>
+
+<pre><code class="language-python"># 测试range 占用内存函数
+from sys import getsizeof
+foo1 = lambda x:getsizeof(range(int(10**x)))
+</code></pre>
+
+<pre><code class="language-bash"># 返回的数字与实际最高内存占用出入很大, 另开一个shell 监控memory
+watch -n 0.01  &quot;free -m&quot;
+</code></pre></li>
+</ul></li>
+</ul>
+
+<p><img src="http://qiniu.heyuhua.com/2016-12-15%2021-42-21%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="辛苦的见证啊" title=" " /></p>
+
+<p><code>foo1(x)</code> 结果：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><code>x</code>的值</th>
+<th align="right">运行时最高占用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="right">&lsquo;memoryError&rsquo;</td>
+</tr>
+
+<tr>
+<td align="center">9</td>
+<td align="right">31138_mb</td>
+</tr>
+
+<tr>
+<td align="center">8</td>
+<td align="right">3111_mb</td>
+</tr>
+
+<tr>
+<td align="center">7</td>
+<td align="right">77mb</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>跟之前口算的理想大小40mb 没差, 可以接受</p></li>
+
+<li><p>然后给foo1 做一些修改：</p></li>
+</ul>
+
+<pre><code class="language-python">from sys import getsizeof
+foo2 = lambda x:getsizeof(range(0, int(10**x), 1))
+
+</code></pre>
+
+<p><code>foo2(x)</code> 结果：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><code>x</code>的值</th>
+<th align="right">运行时最高占用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="right">&lsquo;memoryError&rsquo;</td>
+</tr>
+
+<tr>
+<td align="center">9</td>
+<td align="right">31138_mb</td>
+</tr>
+
+<tr>
+<td align="center">8</td>
+<td align="right">3111_mb</td>
+</tr>
+
+<tr>
+<td align="center">7</td>
+<td align="right">235mb</td>
+</tr>
+</tbody>
+</table>
+
+<p>**比较两次 <code>foo(7)</code> 可怕的事情发生了， range 生成同一内容的两种调用方法会有两种内存占用。 **</p>
+
+<blockquote>
+<p>至于国外集群不出问题的原因， 国外服务器一天生产的log 比较少，所以文件也比较小。so &hellip;</p>
+</blockquote>
+
+<p>end.</p>
+
+<blockquote>
+<h2 id="为什么我的super报错">为什么我的super报错？</h2>
+</blockquote>
+
+<ul>
+<li><p>于 2016年12月16日15:06:31</p></li>
+
+<li><p>问题代码：
+```python
+class A:
+def <strong>init</strong>(self):
+    pass</p></li>
+</ul>
+
+<p>class B(a):
+    def <strong>init</strong>(self):
+        super(B, self).<strong>init</strong>()</p>
+
+<p>c = B()</p>
+
+<pre><code>
+上述代码会报`TypeError: super() argument 1 must be type, not classobj`错误
+
+* 解决办法 `class A:` 旧的类型写法已经被弃用， 改用`class A(object)` 万事大吉
+
+    - 刚才我在想，为什么我不会范这个错误? 因为我已经懒到了根本不会写class...
+      这就是我的*BOP* 编程思想： __Bed Oriented Programming__
+
+
+
+
+## 二. 搬运wtfpyhon项目 + 自评
+
+&gt; 项目地址： [wtfpy](https://github.com/satwikkansal/wtfpython)  该项目使用DO WHAT THE FUCK YOU WANT 开源协议。所以应该在不获取授权的情况下搬运应该是没什么事的。
+&gt;
+&gt; python 2的wft尽量少写。
+
+1. ### 字符编码
+
+```Ipython
+In [2]: 'value' == 'valuе'
+Out[2]: False
+</code></pre>
+
+<p>坑比指数 ⭐️</p>
+
+<p>虽然看起来很魔幻，但是现实生活中能打出两个e的几率其实感觉相当低。必经我特么连cyrillic 码是啥都不知道。。。</p>
+
+<ol>
+<li>### 缩进 | py-version &lt; 3</li>
+</ol>
+
+<pre><code class="language-python">def square(x):
+    &quot;&quot;&quot;
+    A simple function to calculate square of a number by addition.
+    &quot;&quot;&quot;
+    sum_so_far = 0
+    for counter in range(x):
+        sum_so_far = sum_so_far + x
+  return sum_so_far
+</code></pre>
+
+<p>上面的代码会输出 10而不会输出想象的 100</p>
+
+<p>坑比指数⭐️</p>
+
+<p>这码在idea里甚至会报错。。。就算vim党一般在配置里也会显式区分tab与spcace的区别（1tab=4space or 2space）</p>
+
+<p>原因：在python2 的解释器中，1tab = 8space，所以return语句进入了for循环。python3已修复。</p>
+
+<ol>
+<li>### python的hash特性</li>
+</ol>
+
+<p>坑比指数⭐️⭐️</p>
+
+<p>eg：</p>
+
+<pre><code class="language-python">some_dict = {}
+some_dict[5.5] = &quot;Ruby&quot;
+some_dict[5.0] = &quot;JavaScript&quot;
+some_dict[5] = &quot;Python&quot;
+</code></pre>
+
+<p>magic:</p>
+
+<pre><code>some_dict[5.0] == some_dict[5] == &quot;python&quot;
+</code></pre>
+
+<blockquote>
+<p>&ldquo;javascript&rdquo;终究会被python无情碾压  ;D</p>
+</blockquote>
+
+<p>python的 list 使用 下标的hash作为实际索引，同时使用hash的还有equal。</p>
+
+<p>如果你希望 <code>5.0 == 5</code> 这个判断句在python中是成立的，就需要接受 hash(5.0) == hash(5)。</p>
+
+<p>同时也应该能接受 javascript被python碾压的结果。</p>
+
+<ol>
+<li>### 生成器  for x in y if z</li>
+</ol>
+
+<p>坑比指数⭐️⭐🌟</p>
+
+<p>eg:</p>
+
+<pre><code class="language-python">array = [1, 8, 15]
+g = (x for x in array if array.count(x) &gt; 0)
+array = [2, 8, 22]
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>In [3]: print(list(g))
+In [4]: 8
+</code></pre>
+
+<p>在generator语法中， in 后面的对象是在声明时被确定的，而 if 后面的语句则会在生成器被执行时才被确定。所以<code>point(list(g))</code>等价于：</p>
+
+<pre><code class="language-Python">print([x for x in [1, 8, 15] if [2, 8, 22].count(x) &gt; 0])
+</code></pre>
+
+<ol>
+<li>### dict迭代中编辑</li>
+</ol>
+
+<p>坑比指数：⭐️🌟</p>
+
+<p>就在看wftpython 前一天，还收到一个想学python的前端同事抱怨：</p>
+
+<pre><code class="language-python"># 为什么下面的语句会报错？！
+a = {'a':1, 'b'=2}
+for i in a.keys():
+  a.pop(i)
+</code></pre>
+
+<p>哈哈哈哈这事就这么过去吧。（这个锅python是不能背的）</p>
+
+<p>wtfpy中的eg：</p>
+
+<pre><code class="language-Python">x = {0: None}
+
+for i in x:
+    del x[i]
+    x[i+1] = None
+    print(i)
+</code></pre>
+
+<p>output:</p>
+
+<pre><code>0
+1
+2
+3
+4
+5
+6
+7
+</code></pre>
+
+<p>tips：永远不曾要尝试在iter dict时尝试添加和修改key.</p>
+
+<ol>
+<li>### List的迭代中编辑</li>
+</ol>
+
+<p>坑比指数⭐️🌟</p>
+
+<p>eg:</p>
+
+<pre><code class="language-python">   list_1 = [1, 2, 3, 4]
+   list_2 = [1, 2, 3, 4]
+   list_3 = [1, 2, 3, 4]
+   list_4 = [1, 2, 3, 4]
+
+   for idx, item in enumerate(list_1):
+       del item
+
+   for idx, item in enumerate(list_2):
+       list_2.remove(item)
+
+   for idx, item in enumerate(list_3[:]):
+       list_3.remove(item)
+
+   for idx, item in enumerate(list_4):
+       list_4.pop(idx)
+</code></pre>
+
+<p>output:</p>
+
+<pre><code class="language-python">   &gt;&gt;&gt; list_1
+   [1, 2, 3, 4]
+   &gt;&gt;&gt; list_2
+   [2, 4]
+   &gt;&gt;&gt; list_3
+   []
+   &gt;&gt;&gt; list_4
+   [2, 4]
+</code></pre>
+
+<p>逐个分析：</p>
+
+<p>​   list_1 的 enumrate的迭代中, del item 只是删除了 list中对象的副本。所以并不会变。</p>
+
+<p>​   list_2和list_4在遍历的第一步删除数字<code>1</code>后list的内容变成了<code>[2, 3, 4]</code> .这些剩余的元素下标会顺延，比如 2的下标会变成0， 3的变成1，所以，当第二次遍历时，index 为 1的元素3将会被删除。</p>
+
+<ol>
+<li>### 字符串联结</li>
+</ol>
+
+<pre><code class="language-python">def add_string_with_plus(iters):
+    s = &quot;&quot;
+    for i in range(iters):
+        s += &quot;xyz&quot;
+    assert len(s) == 3*iters
+
+def add_string_with_format(iters):
+    fs = &quot;{}&quot;*iters
+    s = fs.format(*([&quot;xyz&quot;]*iters))
+    assert len(s) == 3*iters
+
+def add_string_with_join(iters):
+    l = []
+    for i in range(iters):
+        l.append(&quot;xyz&quot;)
+    s = &quot;&quot;.join(l)
+    assert len(s) == 3*iters
+
+def convert_list_to_string(l, iters):
+    s = &quot;&quot;.join(l)
+    assert len(s) == 3*iters
+</code></pre>
+
+<pre><code>&gt;&gt;&gt; timeit(add_string_with_plus(10000))
+100 loops, best of 3: 9.73 ms per loop
+&gt;&gt;&gt; timeit(add_string_with_format(10000))
+100 loops, best of 3: 5.47 ms per loop
+&gt;&gt;&gt; timeit(add_string_with_join(10000))
+100 loops, best of 3: 10.1 ms per loop
+&gt;&gt;&gt; l = [&quot;xyz&quot;]*10000
+&gt;&gt;&gt; timeit(convert_list_to_string(l, 10000))
+10000 loops, best of 3: 75.3 µs per loop
+</code></pre>
+
+<p>耗时天壤之别。但是坑比等级：⭐️</p>
+
+<ul>
+<li><p>大三找实习的时候就有hr叔叔问过我你喜欢用什么做字符串联结。本萌新立马说 用➕。然后那个面试没过。加号的慢是因为 python中的str为不可变对象。加法作为一个双目运算符，每次做一次字符串联结都要创建一次新str对象。当对多个string进行联结时，比如 ‘’aa‘’ +&ldquo;bb&rdquo;+&ldquo;cc&rdquo;, 会首先生成中间变量 ”aabb“,在由“aabb”+&ldquo;cc&rdquo; 得到随后的 “aabbcc”</p></li>
+
+<li><p>python内置的字符串填充工具  <code>.format</code> 和 <code>%</code>在做长字符串处理时效率很高, 但是在处理短字符串时表现欠佳。</p></li>
+
+<li><p>使用join是最好的选择，一次join只会创建一次对象，多目运算神清气爽。</p></li>
+
+<li><p>再给join创建 字符串数组的时候 不要使用append，list的动态扩容内存开销极大。</p></li>
+</ul>
+
+<p>​</p>
+
+<ol>
+<li>### 字符串滞留</li>
+</ol>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = &quot;some_string&quot;
+&gt;&gt;&gt; id(a)
+140420665652016
+&gt;&gt;&gt; id(&quot;some&quot; + &quot;_&quot; + &quot;string&quot;) # Notice that both the ids are same.
+140420665652016
+# using &quot;+&quot;, three strings:
+&gt;&gt;&gt; timeit.timeit(&quot;s1 = s1 + s2 + s3&quot;, setup=&quot;s1 = ' ' * 100000; s2 = ' ' * 100000; s3 = ' ' * 100000&quot;, number=100)
+0.25748300552368164
+# using &quot;+=&quot;, three strings:
+&gt;&gt;&gt; timeit.timeit(&quot;s1 += s2 + s3&quot;, setup=&quot;s1 = ' ' * 100000; s2 = ' ' * 100000; s3 = ' ' * 100000&quot;, number=100)
+0.012188911437988281
+</code></pre>
+
+<p>坑比等级：⭐️</p>
+
+<p>同样是没什么卵用的字符串机制。在进行多次重复三字符串联结时，使用 += 要比单纯的两个加号快很多。因为在使用+=时 等号右面的<code>s2+s3</code>对象并不会销毁。</p>
+
+<ol>
+<li>### else的扭曲之处</li>
+</ol>
+
+<pre><code class="language-Python"> def does_exists_num(l, to_find):
+      for num in l:
+          if num == to_find:
+              print(&quot;Exists!&quot;)
+              break
+      else:
+          print(&quot;Does not exist&quot;)
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; some_list = [1, 2, 3, 4, 5]
+&gt;&gt;&gt; does_exists_num(some_list, 4)
+Exists!
+&gt;&gt;&gt; does_exists_num(some_list, -1)
+Does not exist
+</code></pre>
+
+<p>for-else会在for循环内无break发生后触发else.</p>
+
+<p>同理 try-except-else 无脑三连在try中语句正确执行后才会触发else.</p>
+
+<p>坑壁指数：⭐️</p>
+
+<ol>
+<li>### 是是非非——is</li>
+</ol>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = 256
+&gt;&gt;&gt; b = 256
+&gt;&gt;&gt; a is b
+True
+
+&gt;&gt;&gt; a = 257
+&gt;&gt;&gt; b = 257
+&gt;&gt;&gt; a is b
+False
+
+&gt;&gt;&gt; a = 257; b = 257
+&gt;&gt;&gt; a is b
+True
+</code></pre>
+
+<p>坑比指数：⭐️⭐️⭐️⭐️</p>
+
+<p><code>is</code> 与  <code>==</code>  的区别在于, 前者比较的是操作数是否为同一对象，即检查操作数id， 后者考量的是对象的数值是否相等，比如说使用 hash。</p>
+
+<p>这里的现象涉及到了python的实现，当python启动时，整型数字中 -5 到 256的所有数字都会以对象形式预分配到内存中。所以 当 a，b为256 时， 他们都是一个<code>256</code>对象的引用, <code>a is b</code>返回True。</p>
+
+<p>而当创建一个 大于256的数字时，则会生成一个新的integer对象。那么第二段case返回False也就理所应当了。</p>
+
+<p>最后的True则涉及到另一个python的实现。当在一行初始化赋值多个变量时，同一值只会被创建一次。<code>a = 257; b = 257</code>, <code>c, d= 257, 257</code>这里 <code>a is b</code>,<code>c is d</code> 都会被判True。</p>
+
+<ol>
+<li>### 循环内的闭包</li>
+</ol>
+
+<pre><code class="language-python">funcs = []
+results = []
+for x in range(7):
+    def some_func():
+        return x
+    funcs.append(some_func)
+    results.append(some_func())
+
+funcs_results = [func() for func in funcs]
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; results
+[0, 1, 2, 3, 4, 5, 6]
+&gt;&gt;&gt; funcs_results
+[6, 6, 6, 6, 6, 6, 6]
+
+</code></pre>
+
+<p>坑比指数：⭐️⭐️✨</p>
+
+<p>定义在循环中的闭包 如果使用外部循环变量，闭包将会绑定该变量而不是变量值。所以在循环结束后调用闭包时，闭包内使用的循环变量是其遍历结束时的值。</p>
+
+<pre><code class="language-Python">funcs = []
+for x in range(7):
+    def some_func(x=x):
+        return x
+    funcs.append(some_func)
+</code></pre>
+
+<p>这种局部函数的写法更加妥当。</p>
+
+<ol>
+<li>##被调戏的自加##</li>
+</ol>
+
+<p>input:</p>
+
+<pre><code class="language-python">a = [1, 2, 3, 4]
+b = a
+a = a + [5, 6, 7, 8]
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a
+[1, 2, 3, 4, 5, 6, 7, 8]
+&gt;&gt;&gt; b
+[1, 2, 3, 4]
+</code></pre>
+
+<p>嗯，似乎是正常的。下面是核爆现场。</p>
+
+<p>Input：</p>
+
+<pre><code class="language-python">a = [1, 2, 3, 4]
+b = a
+a += [5, 6, 7, 8]
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a
+[1, 2, 3, 4, 5, 6, 7, 8]
+&gt;&gt;&gt; b
+[1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre>
+
+<p>坑比指数 ⭐️⭐️⭐️✨</p>
+
+<p><code>a = a + [5, 6, 7, 8]</code> 会生成一个新list赋值给a, 此时的b就成了旧的a对象的唯一引用。</p>
+
+<p><code>a += [5, 6, 7, 8]</code> 会产生不同的结果是因为这里list的自加实现 使用了extend 直接在原list上添加新对象。 所以 这里a和b此时还是指向的同一个list。</p>
+
+<ol>
+<li>### 不可变对象被玩弄###</li>
+</ol>
+
+<p>同样是利用了上一条 list 的 自加实现。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; another_tuple = ([1, 2], [3, 4], [5, 6])
+&gt;&gt;&gt; another_tuple[2] += [99, 999]
+TypeError: 'tuple' object does not support item assignment
+&gt;&gt;&gt; another_tuple
+([1, 2], [3, 4], [5, 6, 1000, 99, 999])
+</code></pre>
+
+<p>坑比指数：⭐️⭐️⭐️⭐️</p>
+
+<p>这个是连环坑。首先这个自加会被执行并赋值，同时还会报tuple不可变的错误。</p>
+
+<p>我觉得这就是个大bug。。。</p>
+
+<ol>
+<li>#### 消失的外部变量###</li>
+</ol>
+
+<pre><code class="language-python">e = 7
+try:
+    raise Exception()
+except Exception as e:
+    pass
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; print(e)
+NameError: name 'e' is not defined
+</code></pre>
+
+<p>坑比指数：⭐️</p>
+
+<p>虽然很奇葩。但是如果按照规范coding是不会犯这种错误的。</p>
+
+<p>这个现象涉及到expect as 语法的实现逻辑，当离开except 上下文时，会有一个隐式的del 语句将e删除.</p>
+
+<p>一个正常的except语句：</p>
+
+<pre><code class="language-python">except E as N:
+    foo
+</code></pre>
+
+<p>会被解析成酱：</p>
+
+<pre><code class="language-Python">except E as N:
+    try:
+        do_any_thing_you_like
+    finally:
+        del N
+</code></pre>
+
+<p>（挑着翻译看心情。插眼 2017.09.05， 第二次更新 2017.09.18）</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="vile.heyuhua.com/tags/python/">python</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/" data-tooltip="vimium进阶小炒">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" data-tooltip="linux shell 实用技巧">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 woailuoli993. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/" data-tooltip="vimium进阶小炒">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" data-tooltip="linux shell 实用技巧">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com%2F2016%2F12%2Fpython-%25E7%259A%2584%25E5%259D%2591%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com%2F2016%2F12%2Fpython-%25E7%259A%2584%25E5%259D%2591%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com%2F2016%2F12%2Fpython-%25E7%259A%2584%25E5%259D%2591%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">woailuoli993</h4>
+    
+      <div id="about-card-bio">极度选择困难. <strong>懒癌晚期</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ShangHai
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/">
+                <h3 class="media-heading">python重修之旅（五）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>In code we trust. &ndash;BitCoin
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/">
+                <h3 class="media-heading">zsh git 插件内置别名一览表</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一个14岁孩子经历的的任何事，都会让他铭记一生。—&ndash;《lolita》
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/">
+                <h3 class="media-heading">利用lirc对松下空调遥控器指令的录制</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。</p>
+
+<h3 id="前言">前言</h3>
+
+<p>7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">
+                <h3 class="media-heading">iterm2常用快捷键总结</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+                <h3 class="media-heading">raspberry pi3 ArchLinux 安装记录</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<h2 id="前言">前言</h2>
+
+<p>某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：<em><code>”你很难操作得当。“</code></em></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/">
+                <h3 class="media-heading">python 重修之旅（四）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>我有一万个理由不用vim&amp;emacs</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <h3 class="media-heading">pyenv 常用命令</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>明日再有风雨，明日再作打算</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/">
+                <h3 class="media-heading">go 入门（day 1）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>Hello world!</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/">
+                <h3 class="media-heading">python重修之旅（三）tornado异步&amp;协程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/">
+                <h3 class="media-heading">python重修之旅（二）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<blockquote>
+<p>对于一个职场新人来说，我最不愿意看到的就是办公室政治。工程师不应该是这样的。</p>
+
+<p>模块化的写作不适合我， 所以我决定把重修之旅写成游记形式。就酱。</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         26 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('vile.heyuhua.com/images/cover_2.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="vile.heyuhua.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'vile.heyuhua.com\/2016\/12\/python-%E7%9A%84%E5%9D%91\/';
+          
+            this.page.identifier = '\/2016\/12\/python-%E7%9A%84%E5%9D%91\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'vile_characher';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

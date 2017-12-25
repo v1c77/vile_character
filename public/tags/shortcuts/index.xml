@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shortcuts on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/shortcuts/</link>
+    <description>Recent content in Shortcuts on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Aug 2017 13:45:06 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/shortcuts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iterm2常用快捷键总结</title>
+      <link>vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 07 Aug 2017 13:45:06 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

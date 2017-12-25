@@ -1,0 +1,1360 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.31 with theme Tranquilpeak 0.4.3-BETA">
+    <title>python重修之旅（一）</title>
+    <meta name="author" content="woailuoli993">
+    <meta name="keywords" content=", vici, blog, heyuhua.com">
+
+    <link rel="icon" href="//qiniu.heyuhua.com/blog_favicon.ico">
+    
+
+    
+    <meta name="description" content="还有6个月就毕业了，才知道原来面试之前原来需要刷题什么的。怪不得之前面试我的人都是一脸看智障的样子&hellip;
+本宝宝的第一个专题。第三次系统学习python。2017年计划之一。
+&gt; 年底就是爽，每天就是开开会，下午就自己疯狂coding。
+
+">
+    <meta property="og:description" content="还有6个月就毕业了，才知道原来面试之前原来需要刷题什么的。怪不得之前面试我的人都是一脸看智障的样子&hellip;
+本宝宝的第一个专题。第三次系统学习python。2017年计划之一。
+&gt; 年底就是爽，每天就是开开会，下午就自己疯狂coding。
+
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="python重修之旅（一）">
+    <meta property="og:url" content="/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+    <meta property="og:site_name" content="vici&#39;blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="vici&#39;blog">
+    <meta name="twitter:description" content="还有6个月就毕业了，才知道原来面试之前原来需要刷题什么的。怪不得之前面试我的人都是一脸看智障的样子&hellip;
+本宝宝的第一个专题。第三次系统学习python。2017年计划之一。
+&gt; 年底就是爽，每天就是开开会，下午就自己疯狂coding。
+
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="vile.heyuhua.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88015219-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="vile.heyuhua.com/">vici&#39;blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="vile.heyuhua.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="vile.heyuhua.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">woailuoli993</h4>
+        
+          <h5 class="sidebar-profile-bio">极度选择困难. <strong>懒癌晚期</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/woailuoli993" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/6382035/vi-ci" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      python重修之旅（一）
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-01-17T15:17:27Z">
+        
+  一月 17, 2017
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>还有6个月就毕业了，才知道原来面试之前原来需要刷题什么的。怪不得之前面试我的人都是一脸看智障的样子&hellip;
+本宝宝的第一个专题。第三次系统学习python。2017年计划之一。
+&gt; 年底就是爽，每天就是开开会，下午就自己疯狂coding。</p>
+
+<p></p>
+
+<h2 id="一道面试题">一道面试题</h2>
+
+<h3 id="问题-平面上有若干个点-点与点可以重合-寻找一条直线-使其能穿过最多的点-好吧我承认这是我去面试时候的面试题">&gt; 问题：平面上有若干个点。点与点可以重合，寻找一条直线，使其能穿过最多的点。(好吧我承认这是我去面试时候的面试题。)</h3>
+
+<p>搬运答案。。。<a href="http://www.jiuzhang.com/solutions/max-points-on-a-line/#">这里</a></p>
+
+<pre><code class="language-python">/**
+ * 本代码由九章算法编辑提供。版权所有，转发请注明出处。
+ * - 九章算法致力于帮助更多中国人找到好的工作，教师团队均来自硅谷和国内的一线大公司在职工程师。
+ * - 现有的面试培训课程包括：九章算法班，系统设计班，算法强化班，Java入门与基础算法班，Android 项目实战班，Big Data 项目实战班，
+ * - 更多详情请见官方网站：http://www.jiuzhang.com/?source=code
+ */
+
+# Definition for a point.
+# class Point:
+#     def __init__(self, a=0, b=0):
+#         self.x = a
+#         self.y = b
+
+class Solution:
+    # @param {int[]} points an array of point
+    # @return {int} an integer
+    def maxPoints(self, points):
+        # Write your code here
+        len_points = len(points)
+        if len_points &lt;= 1:
+            return len_points
+        max_count = 0
+        for index1 in range(0, len_points):
+            p1 = points[index1]
+            gradients = {}
+            infinite_count = 0
+            duplicate_count = 0
+            for index2 in range(index1, len_points):
+                p2 = points[index2]
+                dx = p2.x - p1.x
+                dy = p2.y - p1.y
+                if 0 == dx and 0 == dy:
+                    duplicate_count += 1
+                if 0 == dx:
+                    infinite_count += 1
+                else:
+                    g = float(dy) / dx
+                    gradients[g] = (gradients[g] + 1 if gradients.has_key(g) else 1)
+            if infinite_count &gt; max_count:
+                max_count = infinite_count
+            for k, v in gradients.items():
+                v += duplicate_count
+                if v &gt; max_count:
+                    max_count = v
+        return max_count
+</code></pre>
+
+<h2 id="图的python实现">图的python实现</h2>
+
+<pre><code class="language-python">from fractions import Fraction
+from collections import deque
+
+
+class Vertex(object):
+    # 原生点 对象
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return &quot;({}, {})&quot;.format(self.x, self.y)
+
+    __str__ = __repr__
+
+
+class Edge(tuple):
+    # 继承自建tuple类型并重写new方法
+    def __new__(cls, e1, e2):
+        return tuple.__new__(cls, (e1, e2))
+
+    def __repr__(self):
+        return &quot;Edge(%s, %s)&quot; % (repr(self[0]), repr(self[1]))
+
+
+class Graph(dict):
+
+    def __init__(self, vs=[], es=[]):
+        &quot;&quot;&quot; 建立一个新的图，(vs)为顶点vertices列表，(es)为边缘edges列表 &quot;&quot;&quot;
+        for v in vs:
+            self.add_vertex(v)
+        for e in es:
+            self.add_edge(e)
+
+    def add_vertex(self, v):
+        &quot;&quot;&quot; 添加顶点 v:  使用字典结构&quot;&quot;&quot;
+        self[v] = {}
+
+    def add_edge(self, e):
+        &quot;&quot;&quot; 添加边缘 e: e 为一个元组(v,w)
+            在两个顶点 w 和 v 之间添加成员e ，如果两个顶点之间已有边缘，则替换之 &quot;&quot;&quot;
+        v, w = e
+        # 由于一条边会产生两个项目，因此该实现代表了一个无向图
+        self[v][w] = e
+        self[w][v] = e
+
+    def get_edge(self, v1, v2):
+        &quot;&quot;&quot; 接收两个顶点，则返回这条边，否则返回None &quot;&quot;&quot;
+        try:
+            return self[v1][v2]
+        except:
+            return None
+
+    def vertices(self):
+        &quot;&quot;&quot; 返回图中所有顶点的列表 &quot;&quot;&quot;
+        return self.keys()
+
+    def edges(self):
+        &quot;&quot;&quot; 返回图中边的列表 &quot;&quot;&quot;
+        es = set()  # 为了避免返回重复的边，设为集合
+        for v1 in self.vertices():
+            for v2 in self.vertices():
+                es.add(self.get_edge(v2, v1))
+
+        es.discard(None)  # 若集合中存在None元素,则删除 无向图可以不用写这步
+        return list(es)
+
+
+    def add_all_edges(self, vs=None):
+        &quot;&quot;&quot; 从一个无边的图开始，通过在各个顶点间添加边来生成一个完全图
+            输入为目标顶点的列表，如果为None,则对所有的点进行全联结 &quot;&quot;&quot;
+        if vs is None:
+            vs = self.vertices()
+        for v1 in vs:
+            for v2 in vs:
+                if v1 is v2:
+                    continue  # 假设不存在单顶点连通
+                self.add_edge(Edge(v1, v2))
+
+    def bfs(self):
+        &quot;&quot;&quot;
+        广度优先搜索
+        &quot;&quot;&quot;
+        # parents 记录所有可达节点与对应的父节点，这里是一个字典，我们将其 可达节点 作为 key，而将其 父节点 作为 value
+        # query_queue 是用来存放待探索节点的 to-do 列表，这里是一个 FIFO
+
+
+        node = self.vertices()[0]
+        parents, query_queue = {node: None}, deque([node])
+
+        while query_queue:
+            # 总是从 FIFO 的左侧弹出待探索的节点
+            q_node = query_queue.popleft()
+
+            for neighbor in self.out_vertices(q_node):
+                if neighbor in parents:
+                    continue
+
+                # 记录探索到的邻居节点及其父节点
+                parents[neighbor] = q_node
+
+                # 将其邻居节点推入 to-do 列表
+                query_queue.append(neighbor)
+
+        #如果想只得到点的话 可以
+        # return prints.key()
+
+        return parents
+
+    def out_vertices(self, v):
+        &quot;&quot;&quot; 接受一个Vertex并返回邻近顶点（通过一条边连接到给定节点的节点）的列表 &quot;&quot;&quot;
+        return self[v].keys()
+
+    def out_edges(self, v):
+        &quot;&quot;&quot; 接受一个Vertex并返回连接到给定节点的边的列表 &quot;&quot;&quot;
+        return self[v].values()
+</code></pre>
+
+<h2 id="socket">socket</h2>
+
+<h2 id="thread-process">thread／process</h2>
+
+<blockquote>
+<p>文字部分详见小明明 线程篇 和进程篇</p>
+</blockquote>
+
+<h3 id="threading">threading</h3>
+
+<blockquote>
+<p>当前代码版本&mdash;&ndash;》<a href="https://github.com/woailuoli993/test/blob/660297df0614925307bb3272dde6eace19284cf0/dosth/testthread.py">这里</a></p>
+</blockquote>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Created by vici on 22/01/2017
+import threading
+import platform
+import time
+import logging
+from Queue import Queue
+from random import randint
+
+__doc__ = &quot;&quot;&quot; 抄董伟明,官方文档，廖雪峰 bogo  。。。。 threading 实验结果记录
+
+&quot;&quot;&quot;
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-9s) |||| %(message)s',)
+
+
+def timeit(func):
+    &quot;&quot;&quot;一个简单的函数时间装饰器&quot;&quot;&quot;
+    def wrapper(*args, **kwargs):
+        import time
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+        print('{} COST: {}'.format(func.__name__, end-start))
+    return wrapper
+
+
+def show_thread_itself(arg):
+    print(&quot;threading {} is running! &quot;.format(threading.current_thread().getName()))
+
+    for i in xrange(5):
+        print('Thread {} &gt;&gt;&gt; {}'.format(threading.current_thread().getName(), i))
+        time.sleep(1)
+
+    print(&quot;Thread {} end&quot;.format(threading.current_thread().getName()))
+
+    pass
+
+
+def fib(n):
+    if n &lt;= 2:
+        return 1
+    return fib(n-1) + fib(n-2)
+
+
+@timeit
+def nothread():
+    fib(34)
+    fib(34)
+
+
+@timeit
+def withthread():
+    for i in xrange(2):
+        t = threading.Thread(target=fib, args=(34,))
+        t.start()
+
+    main_thread = threading.current_thread()
+
+    for t in threading.enumerate():
+        if t is main_thread:
+            continue
+        t.join()
+
+
+balance = 1000
+lock = threading.Lock()
+
+
+def change_balance():
+    global balance
+    balance += 1000
+    balance -= 1000
+
+
+def money_laundering(num):
+    for i in xrange(num):
+        change_balance()
+
+
+def money_laundering_priveate(num):
+    for i in xrange(num):
+        lock.acquire()
+        try:
+            change_balance()
+        finally:
+            lock.release()
+
+
+def lock_is_important():
+    &quot;&quot;&quot;
+    这里的lock是一种互斥的 可重获的 锁 在一个加锁thread进行完之后将会释放。
+    lock 相当于信号量（Sempahore） 为 1
+    &quot;&quot;&quot;
+    @timeit
+    def test1():
+        print('Before i go to bank ,I have {}'.format(balance))
+        t1 = threading.Thread(target=money_laundering, args=(2000000,))
+        t2 = threading.Thread(target=money_laundering, args=(4000000,))
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+        print(&quot;after two public_money_laundering, I have {}&quot;.format(balance))
+
+    @timeit
+    def test2():
+        global balance
+        balance = 2000
+        print('Before i go to a new bank ,I have {}'.format(balance))
+        t3 = threading.Thread(target=money_laundering_priveate, args=(3000000,))
+        t4 = threading.Thread(target=money_laundering_priveate, args=(3000000,))
+        t3.start()
+        t4.start()
+        t3.join()
+        t4.join()
+        print(&quot;after two private money_launderingm I have {}&quot;.format(balance))
+
+    test1()
+    test2()
+
+
+def consumer_producer():
+    condition = threading.Condition()
+
+    def consumer(cond):
+
+        t = threading.current_thread()
+        print('{} start , and waiting for proc'.format(t.name))
+
+        with cond:
+            cond.wait()
+            print('{} making resource avaiable to consumer'.format(t.name))
+
+    def producer(cond):
+        t = threading.current_thread()
+
+        with cond:
+            print('{} producer acaiable !'.format(t.name))
+            cond.notifyAll() # 激活条件
+
+    c1 = threading.Thread(name='cons1', target=consumer, args=(condition,))
+    c2 = threading.Thread(name='cons2', target=consumer, args=(condition,))
+    p = threading.Thread(name='prod', target=producer, args=(condition,))
+    c1.start()
+    time.sleep(1)
+    c2.start()
+    time.sleep(1)
+    p.start()
+
+
+def consumber_producer_event():
+    &quot;&quot;&quot;一个线程发送事件，其他的线程等待事件的触发  生产者消费者模型&quot;&quot;&quot;
+    from random import randint
+
+    TIMEOUT = 2
+    eve = threading.Event()
+    ll = []
+    threads = []
+
+    def consumer(event, l):
+        &quot;&quot;&quot;消费者&quot;&quot;&quot;
+        mt = threading.currentThread()
+        while 1:
+            event_is_set = event.wait(TIMEOUT)
+            if event_is_set:
+                try:
+                    integer = l.pop()
+                    print('{} pop from list by {}'.format(integer, mt.name))
+                    event.clear()  # 重制事件状态
+                except IndexError:
+                    pass  # 刚启动时容错。
+
+    def producer(event, l):
+        mt = threading.currentThread()
+        while 1:
+            integer = randint(10, 100)
+            l.append(integer)
+            print('{} is append to list by {}'.format(integer, mt.name))
+            event.set()
+            time.sleep(1)
+
+        pass
+
+    for name in ('consumer1', 'consumer2'):
+        t = threading.Thread(name=name, target=consumer, args=(eve, ll))
+        t.start()
+        threads.append(t)
+
+    p = threading.Thread(name='producer', target=producer, args=(eve, ll))
+    p.start()
+    threads.append(p)
+    for t in threads:
+        t.join()
+
+    pass
+
+
+def consumer_producer_queue():
+    &quot;&quot;&quot; 有两种模式 priority 优先级模式 LIFOqueue后进先出模式。&quot;&quot;&quot;
+    # priority 模式
+    from random import random
+    from Queue import PriorityQueue, LifoQueue
+
+    q = PriorityQueue()
+
+    def double(num):
+        return num * 2
+
+    def producer():
+        while 1:
+            wt = random()
+            time.sleep(1)
+            print('put', wt)
+            q.put((double, wt))
+
+    def consumer():
+        while 1:
+            task, arg = q.get()
+            print arg, task(arg)
+            q.task_done()
+
+    for target in (producer, consumer):
+        t = threading.Thread(target=target)
+        t.start()
+
+
+def consumer_producer_priqueue():
+    &quot;&quot;&quot;priority 优先级队列&quot;&quot;&quot;
+    from random import randint
+    from Queue import PriorityQueue
+
+    pri_q = PriorityQueue()
+
+    def triple(n):
+        return n * 3
+
+    def consumer():
+        while 1:
+            if pri_q.empty():
+                break
+            pri, target, arg = pri_q.get()
+            print('[PRI: {}], {} * 3 = {}'.format(pri, arg, target(arg)))
+            pri_q.task_done()
+            time.sleep(1)
+
+        pass
+
+    def producer():
+        count = 0
+        while 1:
+            if count &gt; 50:
+                break
+            pri = randint(10, 100)
+            print('put priority {} '.format(pri))
+            pri_q.put((pri, triple, pri))
+            count += 1
+        pass
+
+    for targ in (producer, consumer):
+        t = threading.Thread(target=targ)
+        t.start()
+        time.sleep(1)
+
+
+def daemon_and_not_daemon():
+
+    def nd():
+        logging.debug(&quot;start!&quot;)
+        time.sleep(6)
+        logging.debug(&quot;end!&quot;)
+
+    def d():
+        logging.debug(&quot;start&quot;)
+        time.sleep(3)
+        logging.debug(&quot;end&quot;)
+
+    t = threading.Thread(target=d, name=&quot;deamon&quot;)
+    nt = threading.Thread(target=nd, name='no-deamon')
+    t.setDaemon(True)
+    t.start()
+
+    nt.start()
+    # 论join 的重要性。
+    t.join()
+
+
+# threading pool &amp;&amp; threading module programing
+def quadra(strings):
+    return str(strings) * 4
+
+
+class Worker(threading.Thread):
+    def __init__(self, queue):
+        super(Worker, self).__init__()
+        self._q = queue
+        self.daemon = True
+        self.start()
+
+    def run(self):
+        while 1:
+            f, args, kwargs = self._q.get()
+
+            try:
+                print('USE {} '.format(self.name))
+                print(f(*args, **kwargs))
+            except Exception as e:
+                print e
+            self._q.task_done()
+    pass
+
+
+class ThreadingPool(object):
+
+    def __init__(self, num_con=5):
+        self._q = Queue(num_con)
+        for _ in xrange(num_con):
+            Worker(self._q)
+
+    def add_task(self, f, *args, **kwargs):
+        self._q.put((f, args, kwargs))
+
+    def wait_complete(self):
+        self._q.join()
+    pass
+
+
+def test_threading_pool():
+    pool = ThreadingPool(10)
+    for _ in xrange(1000):
+        wt = randint(1, 9)
+        pool.add_task(quadra, wt)
+        time.sleep(1)
+    pool.wait_complete()
+
+
+
+def main():
+    # nothread()
+    # withthread(）
+    # ----------------- no threading vs use treading-------------------------
+    # show_thread_itself('no muti')
+    # print('threading is running! thraead name is {}'.format(threading.current_thread().getName()))
+    # t = threading.Thread(target=show_thread_itself, args=(123,), name='Do yourself')
+    # t.start()
+    # t.join()
+    # print('threading {} end.'.format(threading.current_thread().getName()))
+    # ------------------ problem on thread lock ---------------------------
+    # lock_is_important()
+    # ------------------ cunsumer / producter model with condition -----------------------
+    # consumer_producer()
+    # ------------------ cumsumer/ producter model with event -----------------
+    # consumber_producer_event()
+    # --------   deamon and not deamon threading   ------------------------
+    # daemon_and_not_daemon()
+    # ------------------ cunsumer / producter model with Queue -----------------------
+    # consumer_producer_queue() # 普通队列
+    # consumer_producer_priqueue()  # 优先级队列
+    # ------------------ threadingpool ------------
+    test_threading_pool()
+
+    pass
+
+if __name__ == '__main__':
+    print(&quot;python version is {}&quot;.format(platform.python_version()))
+    main()
+    print(&quot;done!&quot;)
+
+</code></pre>
+
+<h3 id="multiprocessing-进程部分">multiprocessing 进程部分</h3>
+
+<h4 id="mapreduce-with-multiprocess">mapreduce with multiprocess</h4>
+
+<blockquote>
+<p><a href="https://pymotw.com/2/multiprocessing/mapreduce.html">文章搬运</a>, <a href="https://github.com/woailuoli993/test/blob/master/dosth/testmapreducemultiprocess.py">代码拷贝</a></p>
+</blockquote>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="vile.heyuhua.com/tags/python/">python</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/" data-tooltip="aria2 配置笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/2017-2018%E5%B9%B4-%E4%B8%A4%E5%B9%B4%E8%AE%A1%E5%88%92/" data-tooltip="2017-2018年 两年计划">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 woailuoli993. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/" data-tooltip="aria2 配置笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/2017-2018%E5%B9%B4-%E4%B8%A4%E5%B9%B4%E8%AE%A1%E5%88%92/" data-tooltip="2017-2018年 两年计划">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com%2F2017%2F01%2Fpython%25E9%2587%258D%25E4%25BF%25AE%25E4%25B9%258B%25E6%2597%2585%25E4%25B8%2580%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com%2F2017%2F01%2Fpython%25E9%2587%258D%25E4%25BF%25AE%25E4%25B9%258B%25E6%2597%2585%25E4%25B8%2580%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com%2F2017%2F01%2Fpython%25E9%2587%258D%25E4%25BF%25AE%25E4%25B9%258B%25E6%2597%2585%25E4%25B8%2580%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">woailuoli993</h4>
+    
+      <div id="about-card-bio">极度选择困难. <strong>懒癌晚期</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ShangHai
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/">
+                <h3 class="media-heading">python重修之旅（五）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>In code we trust. &ndash;BitCoin
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/">
+                <h3 class="media-heading">zsh git 插件内置别名一览表</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一个14岁孩子经历的的任何事，都会让他铭记一生。—&ndash;《lolita》
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/">
+                <h3 class="media-heading">利用lirc对松下空调遥控器指令的录制</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。</p>
+
+<h3 id="前言">前言</h3>
+
+<p>7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">
+                <h3 class="media-heading">iterm2常用快捷键总结</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+                <h3 class="media-heading">raspberry pi3 ArchLinux 安装记录</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<h2 id="前言">前言</h2>
+
+<p>某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：<em><code>”你很难操作得当。“</code></em></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/">
+                <h3 class="media-heading">python 重修之旅（四）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>我有一万个理由不用vim&amp;emacs</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <h3 class="media-heading">pyenv 常用命令</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>明日再有风雨，明日再作打算</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/">
+                <h3 class="media-heading">go 入门（day 1）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>Hello world!</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/">
+                <h3 class="media-heading">python重修之旅（三）tornado异步&amp;协程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/">
+                <h3 class="media-heading">python重修之旅（二）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<blockquote>
+<p>对于一个职场新人来说，我最不愿意看到的就是办公室政治。工程师不应该是这样的。</p>
+
+<p>模块化的写作不适合我， 所以我决定把重修之旅写成游记形式。就酱。</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         26 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('vile.heyuhua.com/images/cover_2.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="vile.heyuhua.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'vile.heyuhua.com\/2017\/01\/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80\/';
+          
+            this.page.identifier = '\/2017\/01\/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'vile_characher';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Celery on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/celery/</link>
+    <description>Recent content in Celery on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 29 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/celery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>celery任务分发-术业有专攻的worker们</title>
+      <link>vile.heyuhua.com/2016/11/celery%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91-%E6%9C%AF%E4%B8%9A%E6%9C%89%E4%B8%93%E6%94%BB%E7%9A%84worker%E4%BB%AC/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/celery%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91-%E6%9C%AF%E4%B8%9A%E6%9C%89%E4%B8%93%E6%94%BB%E7%9A%84worker%E4%BB%AC/</guid>
+      <description>&lt;p&gt;本事借的钱，为什么要还？&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;此文章脱胎于我在stackoverflow的某回答
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

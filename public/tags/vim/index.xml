@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/vim/</link>
+    <description>Recent content in Vim on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 18 Dec 2016 20:55:14 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vimium进阶小炒</title>
+      <link>vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/</link>
+      <pubDate>Sun, 18 Dec 2016 20:55:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/</guid>
+      <description>&lt;div class=&#34;alert warning &#34;&gt;
+  &lt;p&gt;推荐使用cvim，本人不再使用 vimium &amp;ndash; 2017.10.03&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;CTO大人把组内gitlib的地址route到了ooxx.com，受他的启发我把*.zhihu.com host 到了冷宫，跟百度作伴。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim使用技巧</title>
+      <link>vile.heyuhua.com/2016/11/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Wed, 30 Nov 2016 16:50:53 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;看那白狐脸, 一手绣冬, 一手春雷&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;写在之前&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;vim 我真的是不是喜欢用。处于同事们的威逼，才稍微学了一点点皮毛。 上古神器尽量少用。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不定时看心情更新&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

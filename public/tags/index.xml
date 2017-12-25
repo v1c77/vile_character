@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/</link>
+    <description>Recent content in Tags on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 18 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Aria2c</title>
+      <link>vile.heyuhua.com/tags/aria2c/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/aria2c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>vile.heyuhua.com/tags/blog/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Celery</title>
+      <link>vile.heyuhua.com/tags/celery/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/celery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>vile.heyuhua.com/tags/docker/</link>
+      <pubDate>Wed, 15 Feb 2017 16:20:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>vile.heyuhua.com/tags/git/</link>
+      <pubDate>Thu, 01 Dec 2016 19:09:25 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>vile.heyuhua.com/tags/go/</link>
+      <pubDate>Fri, 10 Mar 2017 16:20:49 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>vile.heyuhua.com/tags/linux/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postgre</title>
+      <link>vile.heyuhua.com/tags/postgre/</link>
+      <pubDate>Wed, 15 Feb 2017 16:20:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/postgre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postgre Xl</title>
+      <link>vile.heyuhua.com/tags/postgre-xl/</link>
+      <pubDate>Wed, 15 Feb 2017 16:20:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/postgre-xl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Proxy</title>
+      <link>vile.heyuhua.com/tags/proxy/</link>
+      <pubDate>Mon, 28 Nov 2016 17:43:37 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>vile.heyuhua.com/tags/python/</link>
+      <pubDate>Fri, 21 Jul 2017 16:28:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raspberrypi</title>
+      <link>vile.heyuhua.com/tags/raspberrypi/</link>
+      <pubDate>Mon, 14 Aug 2017 20:48:55 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>vile.heyuhua.com/tags/shell/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shortcuts</title>
+      <link>vile.heyuhua.com/tags/shortcuts/</link>
+      <pubDate>Mon, 07 Aug 2017 13:45:06 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/shortcuts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>vile.heyuhua.com/tags/test/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>vile.heyuhua.com/tags/vim/</link>
+      <pubDate>Sun, 18 Dec 2016 20:55:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Work</title>
+      <link>vile.heyuhua.com/tags/work/</link>
+      <pubDate>Wed, 02 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/tags/work/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/git/</link>
+    <description>Recent content in Git on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 01 Dec 2016 19:09:25 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git 使用总结</title>
+      <link>vile.heyuhua.com/2016/12/git-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 01 Dec 2016 19:09:25 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/git-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;They are gonna get me one wey or another.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

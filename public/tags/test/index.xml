@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/test/</link>
+    <description>Recent content in Test on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 29 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>为什么要开个人博客</title>
+      <link>vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;副标题+ 内容缩略：好看的皮囊千篇一律，有趣的人200多斤。想变的有趣还是得多吃多睡。。。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

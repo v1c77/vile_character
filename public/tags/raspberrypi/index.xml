@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raspberrypi on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/raspberrypi/</link>
+    <description>Recent content in Raspberrypi on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 14 Aug 2017 20:48:55 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/raspberrypi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>利用lirc对松下空调遥控器指令的录制</title>
+      <link>vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/</link>
+      <pubDate>Mon, 14 Aug 2017 20:48:55 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/</guid>
+      <description>&lt;p&gt;听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。&lt;/p&gt;
+
+&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>raspberry pi3 ArchLinux 安装记录</title>
+      <link>vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 26 Jul 2017 12:43:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：&lt;em&gt;&lt;code&gt;”你很难操作得当。“&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用树莓派将旧打印机升级为局域网打印机</title>
+      <link>vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
+      <pubDate>Tue, 31 Jan 2017 09:57:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
+      <description>&lt;div class=&#34;alert danger &#34;&gt;
+  &lt;p&gt;遥遥无期系列。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;树莓派是去年（2016年10月份买的），当时买上也不知道干啥就当升级旧打印机的模块了。。。趁过年整理一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

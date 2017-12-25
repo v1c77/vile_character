@@ -1,0 +1,1216 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.31 with theme Tranquilpeak 0.4.3-BETA">
+    <title>docker 入门笔记</title>
+    <meta name="author" content="woailuoli993">
+    <meta name="keywords" content=", vici, blog, heyuhua.com">
+
+    <link rel="icon" href="//qiniu.heyuhua.com/blog_favicon.ico">
+    
+
+    
+    <meta name="description" content="
+
+入门
+
+
+入门手册一(偏理论)
+
+入门手册二(偏实践)
+
+qus1: 使用安装docker后 使用普通用户无法运行docker run AND docker version
+
+">
+    <meta property="og:description" content="
+
+入门
+
+
+入门手册一(偏理论)
+
+入门手册二(偏实践)
+
+qus1: 使用安装docker后 使用普通用户无法运行docker run AND docker version
+
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="docker 入门笔记">
+    <meta property="og:url" content="/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+    <meta property="og:site_name" content="vici&#39;blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="vici&#39;blog">
+    <meta name="twitter:description" content="
+
+入门
+
+
+入门手册一(偏理论)
+
+入门手册二(偏实践)
+
+qus1: 使用安装docker后 使用普通用户无法运行docker run AND docker version
+
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="vile.heyuhua.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88015219-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="vile.heyuhua.com/">vici&#39;blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="vile.heyuhua.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="vile.heyuhua.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">woailuoli993</h4>
+        
+          <h5 class="sidebar-profile-bio">极度选择困难. <strong>懒癌晚期</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/woailuoli993" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/6382035/vi-ci" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      docker 入门笔记
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-11-28T19:48:21Z">
+        
+  十一月 28, 2016
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#入门">入门</a>
+<ul>
+<li><a href="#qus1-使用安装docker后-使用普通用户无法运行-docker-run-and-docker-version">qus1: 使用安装docker后 使用普通用户无法运行<code>docker run</code> AND <code>docker version</code></a>
+<ul>
+<li><a href="#错误提示">错误提示:</a></li>
+</ul></li>
+<li><a href="#技巧1-使用阿里云做ecs-的docker-镜像下载加速">技巧1: 使用阿里云做ecs 的docker 镜像下载加速</a></li>
+<li><a href="#技巧2-修改docker-容器镜像的默认地址-ubuntu16-04">技巧2: 修改docker 容器镜像的默认地址（ubuntu16.04）：</a></li>
+<li><a href="#docker-部署工具-自动化部署">docker 部署工具(自动化部署):</a></li>
+<li><a href="#大白话">大白话</a></li>
+<li><a href="#镜像操作">镜像操作</a>
+<ul>
+<li>
+<ul>
+<li><a href="#显示所有本地存放的镜像">显示所有本地存放的镜像</a></li>
+<li><a href="#从镜像仓库拉取镜像">从镜像仓库拉取镜像</a></li>
+<li><a href="#运行镜像">运行镜像</a></li>
+</ul></li>
+<li><a href="#容器常用操作命令">容器常用操作命令</a>
+<ul>
+<li><a href="#启动容器">启动容器</a></li>
+<li><a href="#重启容器">重启容器</a></li>
+<li><a href="#守护态运行">守护态运行</a></li>
+<li><a href="#进入容器">进入容器</a></li>
+<li><a href="#查看容器">查看容器</a></li>
+<li><a href="#删除容器">删除容器</a></li>
+</ul></li>
+<li><a href="#docker-run-命令-重要参数"><code>docker run</code> 命令 重要参数</a>
+<ul>
+<li><a href="#在原有镜像的基础上创建镜像">在原有镜像的基础上创建镜像</a></li>
+<li><a href="#通过dokerfile-生成镜像">通过dokerfile 生成镜像</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#docker-项目部署">docker 项目部署</a>
+<ul>
+<li><a href="#实验环节-在app2上部署mongo-replica-arbiter-仲裁者">实验环节: 在app2上部署mongo replica arbiter(仲裁者)</a></li>
+<li><a href="#某部署版方案简略-请略过">某部署版方案简略(请略过)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="入门">入门</h1>
+
+<ul>
+<li><a href="https://www.gitbook.com/book/hujb2000/docker-flow-evolution/details">入门手册一(偏理论)</a></li>
+
+<li><p><a href="https://www.gitbook.com/book/yeasy/docker_practice/details">入门手册二(偏实践)</a></p>
+
+<h2 id="qus1-使用安装docker后-使用普通用户无法运行-docker-run-and-docker-version">qus1: 使用安装docker后 使用普通用户无法运行<code>docker run</code> AND <code>docker version</code></h2>
+
+<p></p>
+
+<h3 id="错误提示">错误提示:</h3>
+
+<blockquote>
+<p>Cannot connect to the Docker daemon. Is the docker daemon running on this host?</p>
+</blockquote></li>
+</ul>
+
+<p>在使用<code>groupadd</code> 添加了docker 用户组及 将当前 ==$USER== 添加到用户组之后,<strong>务必要进行注销重新登录</strong></p>
+
+<pre><code class="language-shell?linenums=false">cat /etc/group # 可以获取当前系统所有组及权限
+</code></pre>
+
+<h2 id="技巧1-使用阿里云做ecs-的docker-镜像下载加速">技巧1: 使用阿里云做ecs 的docker 镜像下载加速</h2>
+
+<p><a href="https://cr.console.aliyun.com/#/accelerator">点进这里申请及查看自己的加速地址</a>
+* 一下是ubuntu 14.04 的配置加速器命令</p>
+
+<pre><code class="language-perl">echo &quot;DOCKER_OPTS=\&quot;\$DOCKER_OPTS --registry-mirror=https://95s2tvj3.mirror.aliyuncs.com\&quot;&quot; | sudo tee -a /etc/default/docker
+sudo service docker restart
+</code></pre>
+
+<ul>
+<li>以下是 centos 7的..
+<code>bash
+sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+sudo sed -i &quot;s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon --registry-mirror=https://95s2tvj3.mirror.aliyuncs.com|g&quot; /etc/systemd/system/docker.service
+sudo systemctl daemon-reload
+sudo service docker restart
+</code></li>
+</ul>
+
+<p>其中那个神奇的域名(<a href="https://95s2tvj3.mirror.aliyuncs.com)是">https://95s2tvj3.mirror.aliyuncs.com)是</a> 阿里云开发者账号生成的个人加速镜像地址</p>
+
+<h2 id="技巧2-修改docker-容器镜像的默认地址-ubuntu16-04">技巧2: 修改docker 容器镜像的默认地址（ubuntu16.04）：</h2>
+
+<pre><code class="language-bash"># 关闭服务
+systemctl stop docker
+sudo mv /var/lib/docker /data/docker
+sddo ln -s /data/docker /var/lib/docker
+systemctl start docker
+</code></pre>
+
+<h2 id="docker-部署工具-自动化部署">docker 部署工具(自动化部署):</h2>
+
+<ul>
+<li>Swarm</li>
+<li>Rancher</li>
+<li>Kubernetes</li>
+<li>Helios</li>
+</ul>
+
+<h2 id="大白话">大白话</h2>
+
+<p>** docker与虚拟机的相互理解:</p>
+
+<table>
+<thead>
+<tr>
+<th>docker</th>
+<th align="right">像啥</th>
+<th align="center">术语</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>镜像</td>
+<td align="right">iso 系统镜像</td>
+<td align="center">image</td>
+</tr>
+
+<tr>
+<td>容器</td>
+<td align="right">跑着的虚拟机</td>
+<td align="center">Container</td>
+</tr>
+
+<tr>
+<td>仓库</td>
+<td align="right">github</td>
+<td align="center">repository</td>
+</tr>
+</tbody>
+</table>
+
+<p>++使用<code>docker run</code> 命令 相当于 在虚拟机中进行了一次从iso 到 运行实例的 过程++</p>
+
+<ul>
+<li>docker client 操纵 docker daemon, docker deamon 为底层的管家</li>
+<li>由上面的大白话可以推测出, 镜像(image) 是只读对象 ,类似于工厂函数,可以创建多个实例 容器</li>
+<li>因为镜像的只读性, 容器在启动时会在 最上层添加 可写层 做个性化部署</li>
+</ul>
+
+<p>docker 基于 linux 的容器机制实现  其中关于 namespace  的进程 隔离部分 及 文件系统的分层 readonly / readwrite 决定了 docker 的运行机制</p>
+
+<h2 id="镜像操作">镜像操作</h2>
+
+<h4 id="显示所有本地存放的镜像">显示所有本地存放的镜像</h4>
+
+<pre><code class="language-bash">docker images
+</code></pre>
+
+<h4 id="从镜像仓库拉取镜像">从镜像仓库拉取镜像</h4>
+
+<pre><code class="language-bash">docker pull imagename
+</code></pre>
+
+<h4 id="运行镜像">运行镜像</h4>
+
+<pre><code class="language-bash">docker run imagename
+</code></pre>
+
+<h3 id="容器常用操作命令">容器常用操作命令</h3>
+
+<h4 id="启动容器">启动容器</h4>
+
+<p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器 重新启动。</p>
+
+<pre><code class="language-bash">$sudo docker run node:latest /bin/echo &quot;Hello World&quot;
+$sudo docker run -t -i node:latest /bin/bash
+</code></pre>
+
+<p>其中， <code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标 准输入保持打开。
+当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：
+检查本地是否存在指定的镜像，不存在就从公有仓库下载
+利用镜像创建并启动一个容器
+分配一个文件系统，并在只读的镜像层外面挂载一层可读写层
+从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去
+从地址池配置一个 ip 地址给容器
+执行用户指定的应用程序
+执行完毕后容器被终止
+docker run 命令参数较多，可以通过以下命令<code>docker run --help</code>查看参数</p>
+
+<p>可以利用 <code>docker start [containerId|containerName]</code> 命令，直接将一个已经终止的容器启动运行。</p>
+
+<h4 id="重启容器">重启容器</h4>
+
+<p><code>docker restart</code> 命令会将一个运行态的容器终止，然后再重新启动它。</p>
+
+<h4 id="守护态运行">守护态运行</h4>
+
+<p>更多的时候，需要让 Docker 容器在后台以守护态（Daemonized）形式运行。此时，可以通过添加 -d 参 数来实现。</p>
+
+<h4 id="进入容器">进入容器</h4>
+
+<p><code>docker exec -it [containerId|containerName] /bin/bash</code>
+获取容器的输出信息</p>
+
+<p>要获取容器的输出信息，可以通过 <code>docker logs [containerId|containerName]</code> 命令。</p>
+
+<h4 id="查看容器">查看容器</h4>
+
+<pre><code class="language-bash">$ sudo docker ps  # 查看正在运行的容器
+$ sudo docker ps -a  # 查看所有的容器状态
+</code></pre>
+
+<h4 id="删除容器">删除容器</h4>
+
+<p>可以使用 <code>docker rm</code> 来删除一个处于终止状态的容器。如果要删除一个运行中的容器，可以添加 ==-f== 参数。Docker 会发送 SIGKILL 信号给容器。
+删除所有容器 <code>docker rm $(docker ps –a –q)</code></p>
+
+<h3 id="docker-run-命令-重要参数"><code>docker run</code> 命令 重要参数</h3>
+
+<p>==-b==:  默认是空，附加在已存在的网桥上，如果是用&rsquo;none&rsquo;参数，就禁用了容器的网络<br />
+==-p==：随机映射容器的所有暴露端口给主机 -p: 映射容器端口给主机
+==&ndash;env==: 设置环境变量
+==-v==: 挂载一个数据卷
+==-entrypoint==:   覆盖镜像的默认的入口指令
+==&ndash;name==: 给容器指定一个名称
+==&ndash;link==: 连接另外的容器</p>
+
+<h4 id="在原有镜像的基础上创建镜像">在原有镜像的基础上创建镜像</h4>
+
+<p>首先在<code>docker run</code> 之后一顿操作
+然后:</p>
+
+<pre><code class="language-bash">docker commit -m &quot;提交说明&quot; -a &quot;指定更新用户信息&quot; 01231412981 huahua/start:test
+# 上面的一串数字是容器id
+</code></pre>
+
+<ul>
+<li>容器id 就是 打开 docker bash 后的主机名</li>
+<li>最后一部分为目标镜像的仓库名和tag 名</li>
+</ul>
+
+<h4 id="通过dokerfile-生成镜像">通过dokerfile 生成镜像</h4>
+
+<p>使用 docker commit 来扩展一个镜像比较简单，但是不方便在一个团队中分享。我们可以使用 docker build 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。
+新建一个目录和一个Dockerfile:</p>
+
+<pre><code class="language-dockerfile"># This is a comment
+FROM node:latest
+MAINTAINER Vi.Ci&lt;heyuhuade@gmail.com&gt;
+RUN apt-get -qq curl
+RUN apt-get -qq babe-cli
+</code></pre>
+
+<p>编写完成 Dockerfile 后可以使用 docker build 来生成镜像。</p>
+
+<pre><code class="language-bash">$ sudo docker build -t &quot;huahua/start:v2&quot; .
+</code></pre>
+
+<p>其中 ==-t== 标记来添加 tag，指定新的镜像的用户信息。 “.” 是 Dockerfile 所在的路径（当前目录），也可以 替换为一个具体的 Dockerfile 的路径。</p>
+
+<p>Dockfile 中的指令被一条一条的执行。每一步都创建了一个新的容器，在 容器中执行指令并提交修改（就跟之前介绍过的 docker commit 一样）。当所有的指令都执行完毕之 后，返回了最终的镜像 id。所有的中间步骤所产生的容器都被删除和清理了。</p>
+
+<p><strong>值得注意的是在dockerfile中的命令都必须避免io交互</strong>
+例如:
+* 在ubuntu中 apt-get 要根据情况加上 ==-qq==(除了错误外什么都不输出 | linux哲学中有一条:什么都不提示就是最好的情况) 或者 ==-y==(对所有的询问回答yes)</p>
+
+<hr />
+
+<p>##############################上面是入门笔记#################################</p>
+
+<h2 id="docker-项目部署">docker 项目部署</h2>
+
+<p><strong>(按照官方文档进行安装)</strong>
+* ### 在安装后的一些必要操作
+    * 添加docker用户组 并将docker管理者添加到group中
+        1. <code>sudo group add docker</code> 添加docker用户组
+        2. <code>sudo usermod -aG docker huahua</code> 将花花添加到docker 组
+        3. <code>sudo service docker restart</code> 重启docker deamo
+    * 将docker 添加到开机自启动后退出root
+        4. <code>sudo chkconfig docker on</code>
+        5. 切换到 huahua 进行 无拘无束的docker操作
+* #### 项目文件 存放在数据卷或着数据卷容器中
+数据卷的添加 可以看做mount</p>
+
+<p>使用 -v 标记也可以指定挂载一个本地主机的目录到容器中去。</p>
+
+<pre><code class="language-bash">$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
+</code></pre>
+
+<p>上面的命令加载主机的 /src/webapp 目录到容器的 /opt/webapp 目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，如果目录不存在 Docker 会自动为你创建它。</p>
+
+<ul>
+<li>注意：Dockerfile 中不支持这种用法，这是因为 Dockerfile 是为了移植和分享用的。然而，不同操作系统的路径格式不一样，所以目前还不能支持。</li>
+</ul>
+
+<p>Docker 挂载数据卷的默认权限是读写，用户也可以通过 :ro 指定为只读。</p>
+
+<pre><code class="language-bash">$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro
+training/webapp python app.py
+</code></pre>
+
+<p>加了 :ro 之后，就挂载为只读了。</p>
+
+<p>查看数据卷的具体信息</p>
+
+<p>在主机里使用以下命令可以查看指定容器的信息</p>
+
+<pre><code class="language-bash">$ docker inspect web
+</code></pre>
+
+<p>&hellip;</p>
+
+<ul>
+<li><h3 id="实验环节-在app2上部署mongo-replica-arbiter-仲裁者">实验环节: 在app2上部署mongo replica arbiter(仲裁者)</h3>
+
+<ul>
+<li>从hub中下载合适的mongo镜像(version 3.0.1)
+<strong>一定要使用阿里提供的加速服务,否则慢的爆炸</strong></li>
+</ul>
+
+<pre><code class="language-bash">docker pull mongo:3.0.1
+</code></pre>
+
+<ul>
+<li><p>在宿主机上创建mongo的数据目录及配置文件目录 并映射到容器</p>
+
+<ul>
+<li>数据目录
+<code>bash
+$ sudo mkdir -p /data/mongo_data/mongo_arbiter
+$ sudo chmod -R a+rw /data/mongo_data/
+</code></li>
+
+<li><p>生成上线仲裁者容器
+日志目录绑定; db数据目录绑定; 端口绑定;</p>
+
+<pre><code>docker run --name ksx_arbiter -p 10.163.8.90:27099:27017 -v /data/mongo_data/mongo_arbiter:/data/db -d mongo:3.0.1 --replSet &quot;ksxingrs1&quot;
+</code></pre>
+
+<p><code>--name</code> 定义了容器名
+<code>-p</code> 将内网ip的27099 端口映射到了docker中的mongodb端口
+<code>-v</code> 必要的目录及文件映射
+<code>-d</code> 建守护进程</p></li>
+
+<li><p>切换到 db1 服务器 -&gt;添加arbiter节点</p>
+
+<pre><code class="language-mongo">&gt; rs.addArb('10.163.8.90:27099')
+</code></pre></li>
+
+<li><p>返回app2 进入 ksx_arbiter -&gt; 查看 mongo状态</p>
+
+<pre><code>docker exec -it ksx_arbiter /bin/bash
+</code></pre></li>
+
+<li><p>如果有错误 查看docker 日志信息</p>
+
+<pre><code>sudo journalctl -u docker
+</code></pre>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; 全文完 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p></li>
+</ul></li>
+</ul></li>
+
+<li><h3 id="某部署版方案简略-请略过">某部署版方案简略(请略过)</h3>
+
+<ul>
+<li><p>mongo docker 快速部署</p>
+
+<ul>
+<li>配置文件目录
+```bash</li>
+</ul>
+
+<p>$ sudo mkdir /data/mongo_data/mongo_conf</p>
+
+<pre><code>* 日志目录
+</code></pre>
+
+<p>$ sudo mkdir /data/mongo_data/mongo_log</p>
+
+<pre><code>* 使用配置(上传到了公司知识库)
+</code></pre>
+
+<p>$ sudo vi /data/mongo_data/mongo_conf/mongo.conf
+systemLog:
+    destination: file
+    path: &ldquo;/data/mongo_data/mongo_log/mongodb.log&rdquo;
+    logAppend: true</p>
+
+<p>storage:
+    journal:
+        enabled: true</p>
+
+<p>processManagement:
+    fork: true
+```</p></li>
+
+<li><p>mysql
+<strong>版本:5.6.31</strong></p></li>
+
+<li><p>mecache</p></li>
+
+<li><p>nginx
+<strong>目前使用的nginx 版本为 1.6.2</strong></p></li>
+
+<li><p>python 环境 flask</p></li>
+</ul></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="vile.heyuhua.com/tags/docker/">docker</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-tooltip="为什么要开个人博客">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/" data-tooltip="使用内网环境下的代理讨论">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 woailuoli993. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-tooltip="为什么要开个人博客">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/" data-tooltip="使用内网环境下的代理讨论">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com%2F2016%2F11%2Fdocker-%25E5%2585%25A5%25E9%2597%25A8%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com%2F2016%2F11%2Fdocker-%25E5%2585%25A5%25E9%2597%25A8%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com%2F2016%2F11%2Fdocker-%25E5%2585%25A5%25E9%2597%25A8%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">woailuoli993</h4>
+    
+      <div id="about-card-bio">极度选择困难. <strong>懒癌晚期</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ShangHai
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/">
+                <h3 class="media-heading">python重修之旅（五）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>In code we trust. &ndash;BitCoin
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/">
+                <h3 class="media-heading">zsh git 插件内置别名一览表</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一个14岁孩子经历的的任何事，都会让他铭记一生。—&ndash;《lolita》
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/">
+                <h3 class="media-heading">利用lirc对松下空调遥控器指令的录制</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。</p>
+
+<h3 id="前言">前言</h3>
+
+<p>7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">
+                <h3 class="media-heading">iterm2常用快捷键总结</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+                <h3 class="media-heading">raspberry pi3 ArchLinux 安装记录</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<h2 id="前言">前言</h2>
+
+<p>某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：<em><code>”你很难操作得当。“</code></em></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/">
+                <h3 class="media-heading">python 重修之旅（四）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>我有一万个理由不用vim&amp;emacs</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <h3 class="media-heading">pyenv 常用命令</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>明日再有风雨，明日再作打算</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/">
+                <h3 class="media-heading">go 入门（day 1）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>Hello world!</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/">
+                <h3 class="media-heading">python重修之旅（三）tornado异步&amp;协程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/">
+                <h3 class="media-heading">python重修之旅（二）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<blockquote>
+<p>对于一个职场新人来说，我最不愿意看到的就是办公室政治。工程师不应该是这样的。</p>
+
+<p>模块化的写作不适合我， 所以我决定把重修之旅写成游记形式。就酱。</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         26 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('vile.heyuhua.com/images/cover_2.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="vile.heyuhua.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'vile.heyuhua.com\/2016\/11\/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0\/';
+          
+            this.page.identifier = '\/2016\/11\/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'vile_characher';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

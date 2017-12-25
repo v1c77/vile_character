@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proxy on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/proxy/</link>
+    <description>Recent content in Proxy on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 28 Nov 2016 17:43:37 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/proxy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用内网环境下的代理讨论</title>
+      <link>vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/</link>
+      <pubDate>Mon, 28 Nov 2016 17:43:37 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/</guid>
+      <description>&lt;p&gt;我有一身绝佳的溜门撬锁技巧
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

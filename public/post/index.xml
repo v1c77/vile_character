@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on vici&#39;blog</title>
+    <link>vile.heyuhua.com/post/</link>
+    <description>Recent content in Posts on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python重修之旅（五）</title>
+      <link>vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;In code we trust. &amp;ndash;BitCoin
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>zsh git 插件内置别名一览表</title>
+      <link>vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/</link>
+      <pubDate>Wed, 30 Aug 2017 18:46:37 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/</guid>
+      <description>&lt;p&gt;一个14岁孩子经历的的任何事，都会让他铭记一生。—&amp;ndash;《lolita》
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用lirc对松下空调遥控器指令的录制</title>
+      <link>vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/</link>
+      <pubDate>Mon, 14 Aug 2017 20:48:55 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/</guid>
+      <description>&lt;p&gt;听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。&lt;/p&gt;
+
+&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iterm2常用快捷键总结</title>
+      <link>vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 07 Aug 2017 13:45:06 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>raspberry pi3 ArchLinux 安装记录</title>
+      <link>vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 26 Jul 2017 12:43:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：&lt;em&gt;&lt;code&gt;”你很难操作得当。“&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 重修之旅（四）</title>
+      <link>vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/</link>
+      <pubDate>Fri, 21 Jul 2017 16:28:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;我有一万个理由不用vim&amp;amp;emacs&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>pyenv 常用命令</title>
+      <link>vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 20 Apr 2017 17:54:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;明日再有风雨，明日再作打算&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>go 入门（day 1）</title>
+      <link>vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/</link>
+      <pubDate>Fri, 10 Mar 2017 16:20:49 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Hello world!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python重修之旅（三）tornado异步&amp;协程</title>
+      <link>vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/</link>
+      <pubDate>Thu, 09 Mar 2017 10:22:19 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/</guid>
+      <description>&lt;div class=&#34;alert warning &#34;&gt;
+  &lt;p&gt;该博文内容缺失&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python重修之旅（二）</title>
+      <link>vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/</link>
+      <pubDate>Tue, 07 Mar 2017 16:12:52 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/</guid>
+      <description>&lt;div class=&#34;alert warning &#34;&gt;
+  &lt;p&gt;该博文内容缺失&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;对于一个职场新人来说，我最不愿意看到的就是办公室政治。工程师不应该是这样的。&lt;/p&gt;
+
+&lt;p&gt;模块化的写作不适合我， 所以我决定把重修之旅写成游记形式。就酱。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>postgresq-xl&amp;docker分布式实践</title>
+      <link>vile.heyuhua.com/2017/02/postgresq-xldocker%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 15 Feb 2017 16:20:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/02/postgresq-xldocker%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本文在 2017年3月7日被重写。祝愿各位女王及屏幕那边的大雕萌妹们节日快乐。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用树莓派将旧打印机升级为局域网打印机</title>
+      <link>vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
+      <pubDate>Tue, 31 Jan 2017 09:57:18 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
+      <description>&lt;div class=&#34;alert danger &#34;&gt;
+  &lt;p&gt;遥遥无期系列。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;树莓派是去年（2016年10月份买的），当时买上也不知道干啥就当升级旧打印机的模块了。。。趁过年整理一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>aria2 配置笔记</title>
+      <link>vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&amp;mdash;Lolita&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：此文很可能只适用于mac ！！！&amp;mdash;&amp;gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python重修之旅（一）</title>
+      <link>vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/</link>
+      <pubDate>Tue, 17 Jan 2017 15:17:27 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/</guid>
+      <description>&lt;p&gt;还有6个月就毕业了，才知道原来面试之前原来需要刷题什么的。怪不得之前面试我的人都是一脸看智障的样子&amp;hellip;
+本宝宝的第一个专题。第三次系统学习python。2017年计划之一。
+&amp;gt; 年底就是爽，每天就是开开会，下午就自己疯狂coding。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2017-2018年 两年计划</title>
+      <link>vile.heyuhua.com/2017/01/2017-2018%E5%B9%B4-%E4%B8%A4%E5%B9%B4%E8%AE%A1%E5%88%92/</link>
+      <pubDate>Mon, 16 Jan 2017 18:23:50 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/2017-2018%E5%B9%B4-%E4%B8%A4%E5%B9%B4%E8%AE%A1%E5%88%92/</guid>
+      <description>&lt;p&gt;我的·贤者时间·发生在开完周会或者面试结束的时候。。。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>mac开发环境的一些配置</title>
+      <link>vile.heyuhua.com/2017/01/mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;开平衡车的人都会走残疾人通道。| 做人要谦逊。
+&amp;gt; 从学校考完试回来，掐指一算已经有一个月没写过代码了。今天下午见到某工程师，相比之下感觉现在的自己是个sb。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vimium进阶小炒</title>
+      <link>vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/</link>
+      <pubDate>Sun, 18 Dec 2016 20:55:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/vimium%E8%BF%9B%E9%98%B6%E5%B0%8F%E7%82%92/</guid>
+      <description>&lt;div class=&#34;alert warning &#34;&gt;
+  &lt;p&gt;推荐使用cvim，本人不再使用 vimium &amp;ndash; 2017.10.03&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;CTO大人把组内gitlib的地址route到了ooxx.com，受他的启发我把*.zhihu.com host 到了冷宫，跟百度作伴。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 的坑 </title>
+      <link>vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/</link>
+      <pubDate>Thu, 15 Dec 2016 16:17:05 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/python-%E7%9A%84%E5%9D%91/</guid>
+      <description>&lt;p&gt;生死怎能看淡, 不服就是要干
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux shell 实用技巧</title>
+      <link>vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;linux忽悠原则： 一切皆文件， 通信皆管道， 不管闲事，不说废话.(只能信50%)
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>git 使用总结</title>
+      <link>vile.heyuhua.com/2016/12/git-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 01 Dec 2016 19:09:25 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/git-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;They are gonna get me one wey or another.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim使用技巧</title>
+      <link>vile.heyuhua.com/2016/11/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Wed, 30 Nov 2016 16:50:53 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;看那白狐脸, 一手绣冬, 一手春雷&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;写在之前&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;vim 我真的是不是喜欢用。处于同事们的威逼，才稍微学了一点点皮毛。 上古神器尽量少用。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不定时看心情更新&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>celery任务分发-术业有专攻的worker们</title>
+      <link>vile.heyuhua.com/2016/11/celery%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91-%E6%9C%AF%E4%B8%9A%E6%9C%89%E4%B8%93%E6%94%BB%E7%9A%84worker%E4%BB%AC/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/celery%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91-%E6%9C%AF%E4%B8%9A%E6%9C%89%E4%B8%93%E6%94%BB%E7%9A%84worker%E4%BB%AC/</guid>
+      <description>&lt;p&gt;本事借的钱，为什么要还？&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;此文章脱胎于我在stackoverflow的某回答
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为什么要开个人博客</title>
+      <link>vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;副标题+ 内容缩略：好看的皮囊千篇一律，有趣的人200多斤。想变的有趣还是得多吃多睡。。。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker 入门笔记</title>
+      <link>vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 28 Nov 2016 19:48:21 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;h1 id=&#34;入门&#34;&gt;入门&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gitbook.com/book/hujb2000/docker-flow-evolution/details&#34;&gt;入门手册一(偏理论)&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.gitbook.com/book/yeasy/docker_practice/details&#34;&gt;入门手册二(偏实践)&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;qus1-使用安装docker后-使用普通用户无法运行-docker-run-and-docker-version&#34;&gt;qus1: 使用安装docker后 使用普通用户无法运行&lt;code&gt;docker run&lt;/code&gt; AND &lt;code&gt;docker version&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用内网环境下的代理讨论</title>
+      <link>vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/</link>
+      <pubDate>Mon, 28 Nov 2016 17:43:37 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%90%86%E8%AE%A8%E8%AE%BA/</guid>
+      <description>&lt;p&gt;我有一身绝佳的溜门撬锁技巧
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>某工程师的工作（经验）总结</title>
+      <link>vile.heyuhua.com/2016/11/%E6%9F%90%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 02 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/%E6%9F%90%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;禅师寻一鸡，系绳于其足。拉绳，鸡倒而复起，如此有八。吾问：汝教我锲而不舍？答曰：No, 拉鸡八倒。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

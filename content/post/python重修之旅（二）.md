@@ -1,7 +1,8 @@
 ---
 title: python重修之旅（二）
 date: 2017-03-07 16:12:52
-tags: python
+tags:
+- python
 ---
 {{< alert warning >}}
 该博文内容缺失

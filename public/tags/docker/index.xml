@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/docker/</link>
+    <description>Recent content in Docker on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 Feb 2017 16:20:14 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>postgresq-xl&amp;docker分布式实践</title>
+      <link>vile.heyuhua.com/2017/02/postgresq-xldocker%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 15 Feb 2017 16:20:14 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/02/postgresq-xldocker%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本文在 2017年3月7日被重写。祝愿各位女王及屏幕那边的大雕萌妹们节日快乐。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>aria2 配置笔记</title>
+      <link>vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&amp;mdash;Lolita&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：此文很可能只适用于mac ！！！&amp;mdash;&amp;gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker 入门笔记</title>
+      <link>vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 28 Nov 2016 19:48:21 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/11/docker-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;!-- toc --&gt;
+
+&lt;h1 id=&#34;入门&#34;&gt;入门&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gitbook.com/book/hujb2000/docker-flow-evolution/details&#34;&gt;入门手册一(偏理论)&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.gitbook.com/book/yeasy/docker_practice/details&#34;&gt;入门手册二(偏实践)&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;qus1-使用安装docker后-使用普通用户无法运行-docker-run-and-docker-version&#34;&gt;qus1: 使用安装docker后 使用普通用户无法运行&lt;code&gt;docker run&lt;/code&gt; AND &lt;code&gt;docker version&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

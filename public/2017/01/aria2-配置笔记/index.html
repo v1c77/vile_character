@@ -1,0 +1,1155 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.31 with theme Tranquilpeak 0.4.3-BETA">
+    <title>aria2 配置笔记</title>
+    <meta name="author" content="woailuoli993">
+    <meta name="keywords" content=", vici, blog, heyuhua.com">
+
+    <link rel="icon" href="//qiniu.heyuhua.com/blog_favicon.ico">
+    
+
+    
+    <meta name="description" content="这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&mdash;Lolita
+
+
+注意：此文很可能只适用于mac ！！！&mdash;&gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。
+
+
+">
+    <meta property="og:description" content="这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&mdash;Lolita
+
+
+注意：此文很可能只适用于mac ！！！&mdash;&gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。
+
+
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="aria2 配置笔记">
+    <meta property="og:url" content="/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+    <meta property="og:site_name" content="vici&#39;blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="vici&#39;blog">
+    <meta name="twitter:description" content="这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&mdash;Lolita
+
+
+注意：此文很可能只适用于mac ！！！&mdash;&gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。
+
+
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="vile.heyuhua.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88015219-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="vile.heyuhua.com/">vici&#39;blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="vile.heyuhua.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="vile.heyuhua.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">woailuoli993</h4>
+        
+          <h5 class="sidebar-profile-bio">极度选择困难. <strong>懒癌晚期</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/woailuoli993" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/6382035/vi-ci" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="vile.heyuhua.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      aria2 配置笔记
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-01-18T00:00:00Z">
+        
+  一月 18, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="vile.heyuhua.com/categories/develop">develop</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>这里的天堂天空的颜色犹如地狱之火，但它仍然是天堂。&mdash;Lolita</p>
+
+<blockquote>
+<p>注意：此文很可能只适用于mac ！！！&mdash;&gt; 更新于某一天，现在因为用了docker 可能还是用于别的环境的。。。。</p>
+</blockquote>
+
+<p></p>
+
+<div class="alert info ">
+  <p>配置文件什么的不改 ==路径== 是不能用的！！</p>
+</div>
+
+<h2 id="单纯安装-配置-aria2">单纯安装&amp;配置 aria2</h2>
+
+<ol>
+<li>命令行<code>brew install aria2</code> 即可。2017年1月10日安装时版本为1.30。
+2.配置。（之前copy了个几个貌似很权威的配置文件，结果能不能用 ）乖乖看了遍文档，照着几个大佬的配置文档自己写了一个，勉强能用了。
+<a href="./aria2.conf">aria2.conf</a>内容如下。</li>
+</ol>
+
+<pre><code># 文件保存路径。
+dir=/Users/vici/Downloads
+# 为了启动后继续下载之前的文件 承接 save-session
+input-file=/Users/vici/.aria2/session.dat
+# 日志地址
+log=/tmp/aria2_log.log
+# 最高并行下载任务
+max-concurrent-downloads=15
+# 同服务器最多线程连接数
+max-connection-per-server=15
+# 校验文件完整性
+check-integrity=true
+# 断点续传
+continue=true
+
+# BitTorrent/Metalink Options
+# 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true
+#follow-torrent=true
+# 本地节点查找
+bt-enable-lpd=true
+# 指定在多文件种子中最多能够打开的文件个数（火影忍者全集种子什么的）
+bt-max-open-files=16
+# 单个种子最大连接数
+bt-max-peers=16
+#dht-file-path=/opt/var/aria2/dht.dat
+#dht-file-path6=/opt/var/aria2/dht6.dat
+# 文档里说是设置dht使用的udp监听端口
+#dht-listen-port=6801
+#enable-dht6=true
+# BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999
+#listen-port=51413
+max-overall-upload-limit=0K
+# 种子分享达到一定级别停止做种
+seed-ratio=0
+
+# RPC Options
+# 启用rpc
+enable-rpc=true
+# 允许远程连接，所有来源的连接
+rpc-allow-origin-all=true
+# 允许非外部访问
+rpc-listen-all=true
+# 监听6800端口
+rpc-listen-port=6800
+# 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项
+#rpc-secret=&lt;TOKEN&gt;
+
+# Advanced Options
+# 启用守护进程。
+daemon=true
+# 禁用ipv6下载
+disable-ipv6=true
+#enable-mmap=true
+# 保存旧任务
+force-save=true
+# 开始下载后是否预留文件大小的空间。默认为预留模式，保护磁盘mac需要注释这个配置！！
+#file-allocation=prealloc
+# 日志级别
+log-level=warn
+# 限制下载速度
+# max-overall-download-limit=0K
+# 配合input-file设置。
+save-session=/Users/vici/.aria2/session.dat
+# 下载失败后重新下载设置，默认为true
+#always-resume=true
+# 单个文件最大线程数
+split=10
+# 假设文件大小为30mb，min-split-size设置为10mb。则使用3个来源站。，文件大小为15则使用俩。
+min-split-size=10M
+
+#百度盘
+user-agent=netdisk;5.2.6;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia
+referer=http://pan.baidu.com/disk/home
+</code></pre>
+
+<ol>
+<li><p>试着运行<code>aria2c --conf-path=/路径/aria2.conf</code>然后 用 yAAw 什么的UI试用一波。
+稳妥起见 可以把 配置文件里面的 <code>deamon</code> 改为 false。</p></li>
+
+<li><p>如果很幸运的走到了这一步，接着写个deamon脚本 加载到mac的launchctl里。
+<code>touch ~/Library/LaunchAgents/local.Aria2.plist</code></p></li>
+</ol>
+
+<ul>
+<li>在里面写入如下信息。
+```
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;
+&lt;!DOCTYPE plist PUBLIC &ldquo;-//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;">http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</a></li>
+</ul>
+
+<p><plist version="1.0">
+<dict>
+<key>RunAtLoad</key>
+<true/>
+<key>Label</key>
+<string>aria2</string>
+<key>ProgramArguments</key>
+<array>
+<string>/usr/local/aria2/bin/aria2c</string>
+<string>&ndash;conf-path=/Users/vici/.aria2/aria2.conf</string>
+</array>
+</dict>
+</plist></p>
+
+<pre><code>- 运行 `launchctl load ~/Library/LaunchAgents/local.Aria2.plist`
+- 重启 试一试。不行的话。。。。。。。。。。。。。。。。。。。。。。。。就算了。
+
+## 使用docker 一次性配置 webui-aria2及 aria2服务。
+
+最好还是看看 https://github.com/ziahamza/webui-aria2 的说明。
+1. 拉源码，进入工作目录
+
+```bash
+git clone https://github.com/ziahamza/webui-aria2.git
+cd webui-aria2
+</code></pre>
+
+<ol>
+<li>如果你想将webui的默认语言改为中文。。。 而且像我一样找不到配置文件的套路（第二次更新）
+可以在index.html的最后添加：</li>
+</ol>
+
+<pre><code class="language-javascript">
+&lt;script&gt;
+  window.onload = function(){
+    $(&quot;.flag-icon-cn&quot;).click()
+  }
+&lt;/script&gt;
+
+</code></pre>
+
+<ol>
+<li>修改Dockerfile （其实就改了一行。。。将 goreman setup 中的aria2启动部分做一些修改）</li>
+</ol>
+
+<pre><code class="language-Dockerfile">FROM debian:8
+
+# less priviledge user, the id should map the user the downloaded files belongs to
+RUN groupadd -r dummy &amp;&amp; useradd -r -g dummy dummy -u 1000
+
+# webui + aria2
+RUN apt-get update \
+	&amp;&amp; apt-get install -y aria2 busybox curl \
+	&amp;&amp; rm -rf /var/lib/apt/lists/*
+
+ADD . /webui-aria2
+
+# gosu install latest
+RUN GITHUB_REPO=&quot;https://github.com/tianon/gosu&quot; \
+  &amp;&amp; LATEST=`curl -s  $GITHUB_REPO&quot;/releases/latest&quot; | grep -Eo &quot;[0-9].[0-9]*&quot;` \
+  &amp;&amp; curl -L $GITHUB_REPO&quot;/releases/download/&quot;$LATEST&quot;/gosu-amd64&quot; &gt; /usr/local/bin/gosu \
+  &amp;&amp; chmod +x /usr/local/bin/gosu
+
+# goreman supervisor install latest
+RUN GITHUB_REPO=&quot;https://github.com/mattn/goreman&quot; \
+  &amp;&amp; LATEST=`curl -s  $GITHUB_REPO&quot;/releases/latest&quot; | grep -Eo &quot;v[0-9]*.[0-9]*.[0-9]*&quot;` \
+  &amp;&amp; curl -L $GITHUB_REPO&quot;/releases/download/&quot;$LATEST&quot;/goreman_linux_amd64.tar.gz&quot; &gt; goreman.tar.gz \
+  &amp;&amp; tar -xvzf goreman.tar.gz &amp;&amp; mv /goreman_linux_amd64/goreman /usr/local/bin/goreman &amp;&amp; rm -R goreman*
+
+# goreman setup
+RUN echo &quot;web: gosu dummy /bin/busybox httpd -f -p 8080 -h /webui-aria2\nbackend: gosu dummy /usr/bin/aria2c --conf-path=/data/.aria2/aria2.conf&quot; &gt; Procfile
+
+# aria2 downloads directory
+VOLUME /data
+
+# aria2 RPC port, map as-is or reconfigure webui
+EXPOSE 6800/tcp
+
+# webui static content web server, map wherever is convenient
+EXPOSE 8080/tcp
+
+CMD [&quot;start&quot;]
+ENTRYPOINT [&quot;/usr/local/bin/goreman&quot;]
+</code></pre>
+
+<ol>
+<li>生成镜像。</li>
+</ol>
+
+<pre><code># 从dockerfile生成镜像
+docker build -t yourname/webui-aria2 .
+</code></pre>
+
+<ol>
+<li><p>准备数据卷
+趁着生成镜像的时候 你可以开一个新的terminal，在 你的用户目录 新建一个aria2文件夹，及子文件，结构如下：</p>
+
+<pre><code>aria2
+└── .aria2
+├── aria2.conf
+├── aria2.log
+└── session.txt
+</code></pre></li>
+
+<li><p>并且修改配置文件 <code>aria2.conf</code></p></li>
+</ol>
+
+<p>文档中说明了几个重要文件在容器中的存放地点。</p>
+
+<pre><code>/data/.aria2/session.txt  (空文件。存放未下载完成的任务)
+/data/.aria2/aria2.log    (空文件，记录日志)
+/data/.aria2/aria2.conf   (aria2的日志)
+/data/.downloads/        (文件下载地址。)
+</code></pre>
+
+<p>所以对原来的配置做了一点点改动来适应docker( <a href="./aria2-docker.conf">这个</a>可以直接用 )</p>
+
+<pre><code># 文件保存路径。
+dir=/data/.downloads
+# 为了启动后继续下载之前的文件 承接 save-session
+input-file=/data/.aria2/session.txt
+# 日志地址
+log=/data/.aria2/aria2.log
+# 最高并行下载任务
+max-concurrent-downloads=15
+# 同服务器最多线程连接数
+max-connection-per-server=15
+# 校验文件完整性
+check-integrity=true
+# 断点续传
+continue=true
+
+# BitTorrent/Metalink Options
+# 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true
+#follow-torrent=true
+# 本地节点查找
+bt-enable-lpd=true
+# 指定在多文件种子中最多能够打开的文件个数（火影忍者全集种子什么的）
+bt-max-open-files=16
+# 单个种子最大连接数
+bt-max-peers=16
+dht-file-path=/data/.aria2/dht.dat
+#dht-file-path6=/opt/var/aria2/dht6.dat
+# 文档里说是设置dht使用的udp监听端口
+dht-listen-port=6801
+#enable-dht6=true
+# BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999
+listen-port=6802
+max-overall-upload-limit=0K
+# 种子分享达到一定级别停止做种
+seed-ratio=0
+
+# RPC Options
+# 启用rpc
+enable-rpc=true
+# 允许远程连接，所有来源的连接
+rpc-allow-origin-all=true
+# 允许非外部访问
+rpc-listen-all=true
+# 监听6800端口
+rpc-listen-port=6800
+# 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项
+#rpc-secret=&lt;TOKEN&gt;
+
+# Advanced Options
+# 启用守护进程。
+daemon=true
+# 禁用ipv6下载
+disable-ipv6=true
+#enable-mmap=true
+# 保存旧任务
+force-save=true
+# 开始下载后是否预留文件大小的空间。默认为预留模式，保护磁盘mac需要注释这个配置！！
+#file-allocation=prealloc
+# 日志级别
+log-level=warn
+# 限制下载速度
+# max-overall-download-limit=0K
+# 配合input-file设置。
+save-session=/data/.aria2/session.txt
+# 下载失败后重新下载设置，默认为true
+#always-resume=true
+# 单个文件最大线程数
+split=10
+# 假设文件大小为30mb，min-split-size设置为10mb。则使用3个来源站。，文件大小为15则使用俩。
+min-split-size=10M
+
+#百度盘
+user-agent=netdisk;5.2.6;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia
+referer=http://pan.baidu.com/disk/home
+</code></pre>
+
+<ol>
+<li>生成容器(需要改路径！)</li>
+</ol>
+
+<pre><code>docker run --restart=always -d -v /Users/vici/aria2/:/data -v /Users/vici/Downloads/aria2_dl:/data/.downloads -p 6800-6802:6800-6802 -p 9100:8080 --name=&quot;webui-aria2&quot; vici/webui-aria2-debain
+</code></pre>
+
+<p>其中 <code>Users/vici/Downloads/aria2_dl</code>为我下载文件的存放地址。<code>/Users/vici/aria2</code>为之前新建的相关文件目录（记得改）。</p>
+
+<p>成果应该是这样子滴：
+<img src="http://qiniu.heyuhua.com/2017-01-19%2014webui-aria2.png" alt="webui-aria2" /></p>
+
+<h2 id="全文完">。。。全文完。。。</h2>
+
+<h2 id="让人抓狂的lowb想法-用mac自带的apache部署web-ui">让人抓狂的lowb想法：用mac自带的apache部署web-ui</h2>
+
+<p>为了保持web ui能保持deamon，感觉可以使用mac自带的apache服务器。（测试时候可以用python -m simplehtttpserver 或者node.js）</p>
+
+<ol>
+<li>前期测试: 查看版本 试运行  打开浏览器 <a href="http://localhost">http://localhost</a></li>
+</ol>
+
+<pre><code># 查看版本
+sudo apachectl -v
+# 启动
+sudo apachectl start
+# 浏览
+open http://localhost
+</code></pre>
+
+<ol>
+<li><p>开启虚拟主机。 配置网站。</p>
+
+<ul>
+<li>在终端运行<code>sudo vi /etc/apache2/httpd.conf</code>，打开Apche的配置文件</li>
+<li>在httpd.conf中找到<code>#Include /private/etc/apache2/extra/httpd-vhosts.conf</code>，去掉前面的“＃”，保存并退出。</li>
+
+<li><p>运行<code>sudo apachectl restart</code></p></li>
+
+<li><p>运行 <code>sudo vi /etc/apache2/extra/httpd-vhosts.conf</code></p></li>
+</ul>
+
+<p>你会看到两段配置信息 类似&rsquo;<VirtuaHost *:80>&hellip;.&lsquo;什么的。这两个主机是不存在的。所以此时访问localhost会提示403错误：<code>Forbidden
+You don't have permission to access /index.php on this server</code>. 网上的大佬说用# 注释掉就好。</p>
+
+<blockquote>
+<p>事实证明apache 的方法真的是很lowb。什么 user Root 乱七八糟的搞了半天，丢雷楼某黑。 是我想多了。还是乖乖的用docker。</p>
+</blockquote></li>
+</ol>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="vile.heyuhua.com/tags/aria2c/">aria2c</a>
+
+  <a class="tag tag--primary tag--small" href="vile.heyuhua.com/tags/docker/">docker</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/" data-tooltip="使用树莓派将旧打印机升级为局域网打印机">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/" data-tooltip="python重修之旅（一）">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 woailuoli993. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B0%86%E6%97%A7%E6%89%93%E5%8D%B0%E6%9C%BA%E5%8D%87%E7%BA%A7%E4%B8%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%93%E5%8D%B0%E6%9C%BA/" data-tooltip="使用树莓派将旧打印机升级为局域网打印机">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="vile.heyuhua.com/2017/01/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%80/" data-tooltip="python重修之旅（一）">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com/2017/01/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=vile.heyuhua.com%2F2017%2F01%2Faria2-%25E9%2585%258D%25E7%25BD%25AE%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=vile.heyuhua.com%2F2017%2F01%2Faria2-%25E9%2585%258D%25E7%25BD%25AE%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=vile.heyuhua.com%2F2017%2F01%2Faria2-%25E9%2585%258D%25E7%25BD%25AE%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/85d1ea47d48692ca0ade206fa656bd14?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">woailuoli993</h4>
+    
+      <div id="about-card-bio">极度选择困难. <strong>懒癌晚期</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        ShangHai
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/09/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%94/">
+                <h3 class="media-heading">python重修之旅（五）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>In code we trust. &ndash;BitCoin
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/zsh-git-%E6%8F%92%E4%BB%B6%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D%E4%B8%80%E8%A7%88%E8%A1%A8/">
+                <h3 class="media-heading">zsh git 插件内置别名一览表</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一个14岁孩子经历的的任何事，都会让他铭记一生。—&ndash;《lolita》
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/%E5%88%A9%E7%94%A8lirc%E5%AF%B9%E6%9D%BE%E4%B8%8B%E7%A9%BA%E8%B0%83%E9%81%A5%E6%8E%A7%E5%99%A8%E6%8C%87%E4%BB%A4%E7%9A%84%E5%BD%95%E5%88%B6/">
+                <h3 class="media-heading">利用lirc对松下空调遥控器指令的录制</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>听风听雨过七夕，愁草瘗花铭。对影双人中酒，交加晓梦啼莺。</p>
+
+<h3 id="前言">前言</h3>
+
+<p>7月份入职之后，一直在闲暇之余鼓捣树莓派。在制作联网空调遥控器的时候遇到了很多挫折。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/08/iterm2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">
+                <h3 class="media-heading">iterm2常用快捷键总结</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>其实我不太喜欢用tmux, 就跟不喜欢用vim 一样。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/raspberry-pi3-archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+                <h3 class="media-heading">raspberry pi3 ArchLinux 安装记录</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!-- toc -->
+
+<h2 id="前言">前言</h2>
+
+<p>某同事说：“Arch 操作系统的一大特点就是其pacman系统更新模块采用的是滚动更新模式（也就是说Arch理论上来说只有一个LTS版本）。只要你的操作得当，甚至可以从最古老的arch版本 升级到最新版，从linux 1.0内核升级到4.x内核。” 同事向我无脑推荐Arch之后不负责任的溜了。
+
+在实际操作中，你很快就会发现贱婢同事说的是对的，但是他只说了一半，留白是：<em><code>”你很难操作得当。“</code></em></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/07/python-%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E5%9B%9B/">
+                <h3 class="media-heading">python 重修之旅（四）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>我有一万个理由不用vim&amp;emacs</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/04/pyenv-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <h3 class="media-heading">pyenv 常用命令</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>明日再有风雨，明日再作打算</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/">
+                <h3 class="media-heading">go 入门（day 1）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><blockquote>
+<p>Hello world!</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%B8%89tornado%E5%BC%82%E6%AD%A5%E5%8D%8F%E7%A8%8B/">
+                <h3 class="media-heading">python重修之旅（三）tornado异步&amp;协程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="vile.heyuhua.com/2017/03/python%E9%87%8D%E4%BF%AE%E4%B9%8B%E6%97%85%E4%BA%8C/">
+                <h3 class="media-heading">python重修之旅（二）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><div class="alert warning ">
+  <p>该博文内容缺失</p>
+</div>
+
+<blockquote>
+<p>对于一个职场新人来说，我最不愿意看到的就是办公室政治。工程师不应该是这样的。</p>
+
+<p>模块化的写作不适合我， 所以我决定把重修之旅写成游记形式。就酱。</p>
+</blockquote>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         26 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('vile.heyuhua.com/images/cover_2.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="vile.heyuhua.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'vile.heyuhua.com\/2017\/01\/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0\/';
+          
+            this.page.identifier = '\/2017\/01\/aria2-%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'vile_characher';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

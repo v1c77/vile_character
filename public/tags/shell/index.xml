@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/shell/</link>
+    <description>Recent content in Shell on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 02 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux shell 实用技巧</title>
+      <link>vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2016/12/linux-shell-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;linux忽悠原则： 一切皆文件， 通信皆管道， 不管闲事，不说废话.(只能信50%)
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

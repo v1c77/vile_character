@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on vici&#39;blog</title>
+    <link>vile.heyuhua.com/tags/go/</link>
+    <description>Recent content in Go on vici&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 Mar 2017 16:20:49 +0000</lastBuildDate>
+    
+	<atom:link href="vile.heyuhua.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go 入门（day 1）</title>
+      <link>vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/</link>
+      <pubDate>Fri, 10 Mar 2017 16:20:49 +0000</pubDate>
+      
+      <guid>vile.heyuhua.com/2017/03/go-%E5%85%A5%E9%97%A8day-1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Hello world!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
