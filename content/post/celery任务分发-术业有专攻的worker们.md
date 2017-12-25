@@ -1,7 +1,5 @@
 ---
 title: celery任务分发-术业有专攻的worker们
-subtitle: 凭本事借的钱，为什么要还？
-header-img: mice-queue.png
 date: 2016-11-29
 categories:
 - develop
@@ -9,6 +7,8 @@ tags:
 - python
 - celery
 ---
+
+本事借的钱，为什么要还？
 
 > 此文章脱胎于我在stackoverflow的某回答
 <!--more-->

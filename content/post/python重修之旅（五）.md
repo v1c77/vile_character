@@ -4,6 +4,7 @@ date: 2017-09-19
 categories:
 - develop
 tag: python
+autoThumbnailImage: false
 coverImage: //qiniu.heyuhua.com/Free-cross-wallpaper-desktop.png
 coverCaption: "Free cross and sun raise"
 coverMeta: in

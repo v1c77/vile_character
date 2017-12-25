@@ -45,9 +45,6 @@ def deploy(args):
 
         if args.type == 'auto':
             subprocess.call('git fetch origin', shell=True)
-            subprocess.call('git checkout master', shell=True)
-            subprocess.call('git reset --hard origin/master', shell=True)
-            subprocess.call('git clean -fdx', shell=True)
             subprocess.call('git submodule init', shell=True)
             subprocess.call('git submodule update', shell=True)
             subprocess.call('git submodule foreach git pull --rebase origin master', shell=True)
