@@ -7,4 +7,5 @@
 *.iml
 out
 gen
-将删除 .gitignore
+/public
+# 将删除 .gitignore
