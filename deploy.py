@@ -78,6 +78,9 @@ def deploy(args):
     with ChDir(deploy_dir):
         # step4 clean and pull
         if len(GIT_REPO) > 0:
+            print('git status')
+            subprocess.call('git status', shell=True)
+            print('git fetch {0}'.format(GIT_REPO[0][0]))
             subprocess.call('git fetch {0}'.format(GIT_REPO[0][0]), shell=True)
             if args.type == 'first':
                 subprocess.call('git checkout --orphan temp', shell=True)
@@ -86,6 +89,7 @@ def deploy(args):
                 subprocess.call('git branch -D {0}'.format(GIT_REPO[0][1]), shell=True)
                 subprocess.call('git checkout -b {0}'.format(GIT_REPO[0][1]), shell=True)
             else:
+                print('git checkout {0}'.format(GIT_REPO[0][1]))
                 subprocess.call('git checkout {0}'.format(GIT_REPO[0][1]), shell=True)
 
             subprocess.call('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]), shell=True)
