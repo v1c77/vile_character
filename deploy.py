@@ -123,8 +123,12 @@ def deploy(args):
             subprocess.call('git add --all', shell=True)
             subprocess.call('git commit -a -m "{0}"'.format(commit_msg), shell=True)
             for repo in GIT_REPO:
-                print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
-                subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
+                if repo[0] != 'origin':
+                    print('git push -f {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
+                    subprocess.call('git push -f {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
+                else:
+                    print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
+                    subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='deploy hugo')
