@@ -78,32 +78,39 @@ def deploy(args):
     with ChDir(deploy_dir):
         # step4 clean and pull
         if len(GIT_REPO) > 0:
+            print('[+] pull gh-pages...')
             print('git status')
+            subprocess.call('git status', shell=True)
+            print('git add --all')
             subprocess.call('git status', shell=True)
             print('git fetch {0}'.format(GIT_REPO[0][0]))
             subprocess.call('git fetch {0}'.format(GIT_REPO[0][0]), shell=True)
-            if args.type == 'first':
-                subprocess.call('git checkout --orphan temp', shell=True)
-                subprocess.call('git rm --cached -r .', shell=True)
-                subprocess.call('git clean -fdx', shell=True)
-                subprocess.call('git branch -D {0}'.format(GIT_REPO[0][1]), shell=True)
-                subprocess.call('git checkout -b {0}'.format(GIT_REPO[0][1]), shell=True)
-            else:
-                print('git checkout {0}'.format(GIT_REPO[0][1]))
-                subprocess.call('git checkout {0}'.format(GIT_REPO[0][1]), shell=True)
+            # if args.type == 'first':
+                # subprocess.call('git checkout --orphan temp', shell=True)
+                # subprocess.call('git rm --cached -r .', shell=True)
+                # subprocess.call('git clean -fdx', shell=True)
+                # subprocess.call('git branch -D {0}'.format(GIT_REPO[0][1]), shell=True)
+                # subprocess.call('git checkout -b {0}'.format(GIT_REPO[0][1]), shell=True)
+            # else:
+            print('git checkout {0}'.format(GIT_REPO[0][1]))
+            subprocess.call('git checkout {0}'.format(GIT_REPO[0][1]), shell=True)
 
+            print('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]))
             subprocess.call('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]), shell=True)
             subprocess.call('git clean -fdx', shell=True)
 
         # step5 remove all files
+        print('[+] remove all files in path {}'.format(deploy_dir))
         for f in os.listdir('.'):
-            if f != '.git':
+            if f not in ['.git', 'CNAME']:
                 if os.path.isfile(f):
                     os.remove(f)
                 elif os.path.isdir(f):
                     shutil.rmtree(f)
 
         # step6 copy new files
+        print('[+] copy new files from \npath: {} to \n path: {}'
+              .format(public_dir, deploy_dir))
         for f in os.listdir(public_dir):
             file_path = os.path.join(public_dir, f)
             if os.path.isfile(file_path):
@@ -116,10 +123,8 @@ def deploy(args):
             subprocess.call('git add --all', shell=True)
             subprocess.call('git commit -a -m "{0}"'.format(commit_msg), shell=True)
             for repo in GIT_REPO:
-                if args.test:
-                    print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
-                else:
-                    subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
+                print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
+                subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='deploy hugo')
