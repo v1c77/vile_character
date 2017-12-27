@@ -33,7 +33,7 @@ canonifyurls = true
 [author]
   name = "woailuoli993"
   bio = "极度选择困难. **懒癌晚期**"
-  job = "Developer"
+  job = "Python Developer"
   location = "ShangHai"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   gravatarEmail = "heyuhuade@gmail.com"
