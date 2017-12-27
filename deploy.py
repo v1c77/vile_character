@@ -12,8 +12,8 @@ import subprocess
 __author__ = 'coderzh'
 
 GIT_REPO = [
-    ['origin',  'gh-pages', 'git@github.com:woailuoli993/woailuoli993.github.io.git'],
-    ['coding',  'gh-pages', 'git@git.coding.net:Diaoshe/blog.git'],
+    ['origin',  'master', 'git@github.com:woailuoli993/woailuoli993.github.io.git'],
+    ['coding',  'master', 'git@git.coding.net:Diaoshe/blog.git'],
 ]
 
 DEPLOY_DIR = 'gh-pages'
