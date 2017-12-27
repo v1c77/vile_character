@@ -134,3 +134,24 @@ git push asm_team feature/next_version:feature/next_version
 ```
 git pull --rebase asm_team/feature/next_version
 ```
+
+## submodule
+
+- 添加子模块到项目
+
+```
+git submodule add woailuoli993/ooooxxxx
+```
+
+- 拉取一个包含子项目的项目。。
+
+```
+git submodule init
+git submodule update
+```
+
+- 让项目中的所有子项目统一行动
+```
+# 比如 列出所有的子项目的diff。
+git submodule foreach git diff
+```

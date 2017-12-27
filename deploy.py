@@ -36,7 +36,8 @@ def deploy(args):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
     public_dir = os.path.join(current_dir, 'public')
-    commit_msg = ''
+    commit_msg = 'auto update'
+    submodule_commit_msg = 'push with master repo'
 
     with ChDir(current_dir):
         # step1 clean
@@ -44,10 +45,13 @@ def deploy(args):
             shutil.rmtree(public_dir)
 
         if args.type == 'auto':
-            subprocess.call('git fetch origin', shell=True)
+            subprocess.call('git add .', shell=True)
+            subprocess.call('git commit -m "{}"'.format(commit_msg), shell=True)
+            subprocess.call('git push', shell=True)
             subprocess.call('git submodule init', shell=True)
-            subprocess.call('git submodule update', shell=True)
-            subprocess.call('git submodule foreach git pull --rebase origin master', shell=True)
+            subprocess.call('git submodule foreach "git add ."', shell=True)
+            subprocess.call('git submodule foreach "git commit -m "{}""'
+                            .format(submodule_commit_msg), shell=True)
 
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
