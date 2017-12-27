@@ -18,7 +18,7 @@ defaultContentLanguage = "zh-cn"
 title = "vici'blog"
 theme = "vile_characher_theme"
 disqusShortname = "vic1blog"
-googleAnalytics = "UA-88015219-2"
+googleAnalytics = "UA-88015219-1"
 paginate = 8
 canonifyurls = true
 
