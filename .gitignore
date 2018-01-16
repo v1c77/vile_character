@@ -8,4 +8,5 @@
 out
 gen
 /public
+.DS_Store
 # 将删除 .gitignore

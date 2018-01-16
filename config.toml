@@ -174,9 +174,13 @@ canonifyurls = true
   #   href = "css/mystyle.css"
 
   # Custom JS. Put here your custom JS files. They are loaded after the theme JS;
+
   # they have to be referred from static root. Example
   # [[params.customJS]]
   #   src = "js/myscript.js"
+  [[params.customJS]]
+    src = "http://qiniu.heyuhua.com/highlight.pack.js"
+
 
   # Display `Next` on left side of the pagination, and `Prev` on right side one.
   # If you set this value to `true`, these positions swap.
