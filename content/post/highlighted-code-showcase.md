@@ -13,8 +13,11 @@ thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/highlighted-code-showcase/peak-1
 Tranquilpeak Hugo theme have its own theme to highlight source code. It's based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
 <!--more-->
 
-<!-- toc -->
 
+change log:
+
+- [2018-01-16] 添加对 `golang` , `swift`, `dockerfile` 等语言的支持。
+<!-- toc -->
 # Tabbed code block
 
 {{< tabbed-codeblock tabbed_codeblock >}}
