@@ -37,7 +37,7 @@ def deploy(args):
     parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
     public_dir = os.path.join(current_dir, 'public')
     commit_msg = 'auto update'
-    submodule_commit_msg = 'push with master repo'
+    submodule_commit= 'git commit -m "push with master repo"'
 
     with ChDir(current_dir):
         # step1 clean
@@ -50,7 +50,7 @@ def deploy(args):
             subprocess.call('git push', shell=True)
             subprocess.call('git submodule init', shell=True)
             subprocess.call('git submodule foreach "git add ."', shell=True)
-            subprocess.call(f'git submodule foreach "git commit -m "{submodule_commit_msg}""',
+            subprocess.call(f'git submodule foreach {submodule_commit}',
                             shell=True)
             subprocess.call('git submodule foreach "git push"', shell=True)
 
