@@ -52,6 +52,7 @@ def deploy(args):
             subprocess.call('git submodule foreach "git add ."', shell=True)
             subprocess.call('git submodule foreach "git commit -m "{}""'
                             .format(submodule_commit_msg), shell=True)
+            subprocess.cll('git submodule foreach "git push"')
 
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
