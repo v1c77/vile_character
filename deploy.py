@@ -50,8 +50,8 @@ def deploy(args):
             subprocess.call('git push', shell=True)
             subprocess.call('git submodule init', shell=True)
             subprocess.call('git submodule foreach "git add ."', shell=True)
-            subprocess.call('git submodule foreach "git commit -m /"{}/""'
-                            .format(submodule_commit_msg), shell=True)
+            subprocess.call(f'git submodule foreach "git commit -m "{submodule}""',
+                            shell=True)
             subprocess.call('git submodule foreach "git push"', shell=True)
 
         # on windows set TERM=msys
