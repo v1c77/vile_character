@@ -16,7 +16,7 @@ Tranquilpeak Hugo theme have its own theme to highlight source code. It's based 
 
 change log:
 
-- [2018-01-16] 添加对 `golang` , `swift`, `dockerfile` 等语言的支持。
+- [2018-01-16] 添加对 `golang` , `swift`, `dockerfile` 等语法的支持。
 <!-- toc -->
 # Tabbed code block
 
