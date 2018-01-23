@@ -102,7 +102,7 @@ def deploy(args):
         # step5 remove all files
         print('[+] remove all files in path {}'.format(deploy_dir))
         for f in os.listdir('.'):
-            if f not in ['.git', 'CNAME']:
+            if f not in ['.git', 'CNAME', 'README.RST']:
                 if os.path.isfile(f):
                     os.remove(f)
                 elif os.path.isdir(f):
