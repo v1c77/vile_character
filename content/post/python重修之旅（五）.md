@@ -791,3 +791,110 @@ if __name__ == "__main__":
 
 
 -----------------------行为模式---------------------------
+
+### chain / 责任链
+
+责任链将多个对象连成一条链，并且沿着这条链传递请求，直到有对象处理为止。 该模式解耦了请求和处理者
+，客户端只要发送请求到责任链，无需关心请求的处理细节。
+
+{{< codeblock "chain.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/chain.py" "chain.py" >}}
+# -*- coding: utf-8 -*-
+
+"""
+http://www.dabeaz.com/coroutines/
+"""
+
+from contextlib import contextmanager
+import os
+import sys
+import time
+import abc
+
+
+def coroutine(func):
+    def start(*args, **kwargs):
+        cr = func(*args, **kwargs)
+        next(cr)
+        return cr
+    return start
+
+
+@coroutine
+def coroutine1(target):
+    while True:
+        request = yield
+        if 0 < request <= 10:
+            print('request {} handled in coroutine 1'.format(request))
+        else:
+            target.send(request)
+
+
+@coroutine
+def coroutine2(target):
+    while True:
+        request = yield
+        if 10 < request <= 20:
+            print('request {} handled in coroutine 2'.format(request))
+        else:
+            target.send(request)
+
+
+@coroutine
+def coroutine3(target):
+    while True:
+        request = yield
+        if 20 < request <= 30:
+            print('request {} handled in coroutine 3'.format(request))
+        else:
+            target.send(request)
+
+
+@coroutine
+def default_coroutine():
+    while True:
+        request = yield
+        print('end of chain, no coroutine for {}'.format(request))
+
+
+class ClientCoroutine:
+
+    def __init__(self):
+        # chain
+        self.target = coroutine1(coroutine3(coroutine2(default_coroutine())))
+
+    def delegate(self, requests):
+        for request in requests:
+            self.target.send(request)
+
+
+def timeit(func):
+
+    def count(*args, **kwargs):
+        start = time.time()
+        res = func(*args, **kwargs)
+        count._time = time.time() - start
+        return res
+    return count
+
+
+@contextmanager
+def suppress_stdout():
+    try:
+        stdout, sys.stdout = sys.stdout, open(os.devnull, 'w')
+        yield
+    finally:
+        sys.stdout = stdout
+
+
+if __name__ == "__main__":
+    client = ClientCoroutine()
+    requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
+
+    print('-' * 30)
+    client.delegate(requests)
+
+    requests *= 10000
+    client_delegate = timeit(client.delegate)
+    with suppress_stdout():
+        client_delegate(requests)
+{{< /codeblock >}}
