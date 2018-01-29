@@ -898,3 +898,167 @@ if __name__ == "__main__":
     with suppress_stdout():
         client_delegate(requests)
 {{< /codeblock >}}
+
+### command / 命令模式
+
+一种数据驱动的设计模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以
+处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。
+
+
+
+
+{{< codeblock "command.py" "python" "https://github.com/gennad/Design-Patterns-in-Python/blob/master/command.py" "command.py">}}
+# -*- coding: utf8 -*-
+import abc
+from sys import stdout as console
+
+
+# Handling 'exit' command
+class SessionClosed(Exception):
+    def __init__(self, value):
+        self.value = value
+
+
+# Interface
+class Command(metaclass=abc.ABCMeta):
+    def execute(self):
+        raise NotImplementedError()
+
+    def cancel(self):
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def name(self):
+        ...
+
+
+# rm command
+class RmCommand(Command):
+    def execute(self):
+        console.write("You are executed \"rm\" command\n")
+
+    def cancel(self):
+        console.write("You are canceled \"rm\" command\n")
+
+    def name(self):
+        return "rm"
+
+
+# uptime command
+class UptimeCommand(Command):
+    def execute(self):
+        console.write("You are executed \"uptime\" command\n")
+
+    def cancel(self):
+        console.write("You are canceled \"uptime\" command\n")
+
+    def name(self):
+        return "uptime"
+
+
+# undo command
+class UndoCommand(Command):
+    def execute(self):
+        try:
+            cmd = HISTORY.pop()
+            TRASH.append(cmd)
+            console.write("Undo command \"{0}\"\n".format(cmd.name()))
+            cmd.cancel()
+
+        except IndexError:
+            console.write("ERROR: HISTORY is empty\n")
+
+    def name(self):
+        return "undo"
+
+
+# redo command
+class RedoCommand(Command):
+    def execute(self):
+        try:
+            cmd = TRASH.pop()
+            HISTORY.append(cmd)
+            console.write("Redo command \"{0}\"\n".format(cmd.name()))
+            cmd.execute()
+        except IndexError:
+            console.write("ERROR: TRASH is empty\n")
+
+    def name(self):
+        return "redo"
+
+
+# history command
+class HistoryCommand(Command):
+    def execute(self):
+        i = 0
+        for cmd in HISTORY:
+            console.write("{0}: {1}\n".format(i, cmd.name()))
+            i = i + 1
+
+    def name(self):
+        print("history")
+
+
+# exit command
+class ExitCommand(Command):
+    def execute(self):
+        raise SessionClosed("Good day!")
+
+    def name(self):
+        return "exit"
+
+# available commands
+COMMANDS = {'rm': RmCommand(), 'uptime': UptimeCommand(), 'undo':
+            UndoCommand(), 'redo': RedoCommand(), 'history': HistoryCommand(),
+            'exit': ExitCommand()}
+
+HISTORY = list()
+TRASH = list()
+
+
+# Shell
+def main():
+    try:
+        while True:
+            console.flush()
+            console.write("pysh >> ")
+
+            cmd = input()
+
+            try:
+                command = COMMANDS[cmd]
+                command.execute()
+                if (not isinstance(command, UndoCommand) and not
+                    isinstance(command, RedoCommand) and not
+                        isinstance(command, HistoryCommand)):
+                    global TRASH
+                    TRASH = list()
+                    HISTORY.append(command)
+
+            except KeyError:
+                console.write("ERROR: Command \"%s\" not found\n" % cmd)
+
+    except SessionClosed as e:
+        console.write(e.value)
+
+if __name__ == "__main__":
+    main()
+
+
+{{< /codeblock >}}
+
+
+### iterator / 迭代器
+emmm... class里的 magic methods `__next__`,  `__iter__`, 函数中的`yield`, 都可以用来
+生成iterator。
+一个简单的迭代器。
+```python
+def aiter():
+    a = [1 ,2, 3, 4, 4, 5, 5, 6, 6, 7]
+    for i in a:
+        yield i
+```
+
+### mediator / 中介
+用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，
+并支持松耦合，使代码易于维护。

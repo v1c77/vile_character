@@ -31,7 +31,7 @@ canonifyurls = true
   archive = "archives"
 
 [author]
-  name = "woailuoli993"
+  name = "vici"
   bio = "极度选择困难. **懒癌晚期**"
   job = "Python Developer"
   location = "ShangHai"
@@ -82,7 +82,7 @@ canonifyurls = true
   identifier = "github"
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
-  url = "https://github.com/woailuoli993"
+  url = "https://github.com/v1c77"
 [[menu.links]]
   weight = 2
   identifier = "stackoverflow"
