@@ -1061,4 +1061,116 @@ def aiter():
 
 ### mediator / 中介
 用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，
-并支持松耦合，使代码易于维护。
+并支持松耦合，使代码易于维护。 --> 想聊天的人多了，才出现了qq群。
+
+{{< codeblock "mediator.py" "python" "https://github.com/JakubVojvoda/design-patterns-python/blob/master/mediator/Mediator.py" "mediator.py">}}
+#
+# Python Design Patterns: Mediator
+# Author: Jakub Vojvoda [github.com/JakubVojvoda]
+# 2016
+#
+# Source code is licensed under MIT License
+# (for more details see LICENSE)
+#
+
+import sys
+
+#
+# Colleague classes
+# each colleague communicates with its mediator whenever
+# it would have otherwise communicated with another colleague
+#
+class Colleague:
+  def __init__(self, mediator, identity):
+    self._mediator = mediator
+    self._id = identity
+
+  def getID(self):
+    return self._id
+
+  def send(self, message):
+    pass
+
+  def receive(self, message):
+    pass
+
+class ConcreteColleague(Colleague):
+  def __init__(self, mediator, identity):
+    super().__init__(mediator, identity)
+
+  def send(self, message):
+    print("Message '" + message + "' sent by Colleague " + str(self._id))
+    self._mediator.distribute(self, message)
+
+  def receive(self, message):
+    print("Message '" + message + "' received by Colleague " + str(self._id))
+
+#
+# Mediator
+# defines an interface for communicating with Colleague objects
+#
+class Mediator:
+  def add(self, colleague):
+    pass
+
+  def distribute(self, sender, message):
+    pass
+
+#
+# Concrete Mediator
+# implements cooperative behavior by coordinating Colleague objects
+# and knows its colleagues
+#
+class ConcreteMediator(Mediator):
+  def __init__(self):
+    Mediator.__init__(self)
+    self._colleagues = []
+
+  def add(self, colleague):
+    self._colleagues.append(colleague)
+
+  def distribute(self, sender, message):
+    for colleague in self._colleagues:
+      if colleague.getID() != sender.getID():
+        colleague.receive(message)
+
+
+if __name__ == "__main__":
+
+  # 群。
+  mediator = ConcreteMediator()
+  # 三个臭味相投的路人。
+  c1 = ConcreteColleague(mediator, 1)
+  c2 = ConcreteColleague(mediator, 2)
+  c3 = ConcreteColleague(mediator, 3)
+
+ # 三个人进群了。
+  mediator.add(c1)
+  mediator.add(c2)
+  mediator.add(c3)
+
+  # 路人们在群里聊天。
+  c1.send("Hi!");
+  c3.send("Hello!");
+
+{{< /codeblock >}}
+
+### memento / 备忘录
+如果有了后悔药你写的代码该多放浪形骸？
+
+{{< codeblock "memento.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/memento.py" "memento.py" >}}
+右上角。点点点。
+{{< /codeblock >}}
+
+### observer / 观察者
+常用的状态机订阅模式。
+
+{{< codeblock "memento.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/observer.py" "memento.py" >}}
+右上角。点点点。
+{{< /codeblock >}}
+
+### pub_sub / 发布 - 订阅
+去年毕业的时候面试过一次今日头条, 当时就问了设计模式的发布 订阅模型。。可惜可惜除了那道题别的我连听都没听说过啊。。。。
+{{< codeblock >}}
+
+{{< /codeblock >}}
