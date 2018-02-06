@@ -98,6 +98,8 @@ out[9]:
 ![png](http://qiniu.heyuhua.com/output_7_0.png)
 
 ## python常用设计模式
+
+行文结构参照以下项目。
 项目地址： https://github.com/faif/python-patterns
 
 《松本行弘的程序世界》对三人组的《设计模式》称赞有加：
@@ -107,6 +109,9 @@ out[9]:
 在设计模式原书中一共提到23种常用的设计模式，分为三大类：生成模式（creational），
 构造模式（structural）， 行为模式（behavioral）。该项目同样按照这三大类进行了分类整理，
 同时还补充了一些python常用的其他场景的特用模式。
+在整理这片文章的过程中，我忽略了一些无聊的模式，并引用或者另写了一些更好的代码用例。
+
+
 
 ------------------------生成模式---------------------------
 
@@ -1172,5 +1177,343 @@ if __name__ == "__main__":
 ### pub_sub / 发布 - 订阅
 去年毕业的时候面试过一次今日头条, 当时就问了设计模式的发布 订阅模型。。可惜可惜除了那道题别的我连听都没听说过啊。。。。
 {{< codeblock >}}
+"""
+    pattern publish subscribe
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+"""
+
+
+class Provider:
+
+    def __init__(self):
+        self.msg_queue = []
+        self.subscribers = {}
+
+    def notify(self, msg):
+        self.msg_queue.append(msg)
+
+    def subscribe(self, msg, subscriber):
+        # 订阅相关频道。
+        self.subscribers.setdefault(msg, []).append(subscriber)
+
+    def unsubscribe(self, msg, subscriber):
+        # 取消订阅
+        self.subscribers[msg].remove(subscriber)
+
+    def update(self):
+        for msg in self.msg_queue:
+            # 从消息列表中获取消息
+            for sub in self.subscribers.get(msg, []):
+                # 从订阅者中找到相关方
+                # 推送
+                sub.run(msg)
+        # 清空队列
+        self.msg_queue.clear()
+
+
+class Publisher:
+
+    def __init__(self, msg_center):
+        self.provider = msg_center
+
+    def publish(self, msg):
+        # 发布者负责发布消息
+        self.provider.notify(msg)
+
+
+class Subscriber:
+    """
+    订阅者接受不了消息，处理消息。
+    """
+    def __init__(self, name, msg_center):
+        self.name = name
+        self.provider = msg_center
+
+    def subscribe(self, msg):
+        self.provider.subscribe(msg, self)
+
+    def unsubscribe(self, msg):
+        self.provider.unsubscribe(msg, self)
+
+    def run(self, msg):
+        print(f'{self.name} got {msg}')
+
+
+if __name__ == '__main__':
+    provider = Provider()
+
+    cctv = Publisher(provider)
+
+    xiaoming = Subscriber('xiaoming', provider)
+    huahua = Subscriber('huahua', provider)
+    dandan = Subscriber('dandan', provider)
+
+    huahua.subscribe('chiji')
+    dandan.subscribe('csgo')
+    xiaoming.subscribe('python')
+    cctv.publish('csgo')
+    provider.update()
+
+{{< /codeblock >}}
+
+### registry / 出生登记
+网传这种模式适合与singleton混用，如果登记处有这个人就复用，没有则生成一个单例。
+在实际项目中，我个人更倾向于用来整理同类资源做反向查找。
+这种模式上的整合可能要比 python 的 `cls.__subclasses__()`更通俗一点
+
+{{< codeblock >}}
+
+class RegistryHolder(type):
+
+    REGISTRY = {}
+
+    def __new__(mcs, name, bases, attrs):
+        new_cls = type.__new__(mcs, name, bases, attrs)
+
+        mcs.REGISTRY[new_cls.__name__] = new_cls
+        return new_cls
+
+    # def __init__(cls, *args, **kwargs):
+    #     pass
+
+    @classmethod
+    def get_registry(mcs):
+        return dict(mcs.REGISTRY)
+
+
+class ClassRegistree(metaclass=RegistryHolder):
+    pass
+
+
+class ClassregisA(ClassRegistree):
+    pass
+
+if __name__ == '__main__':
+    print("Before subclassing: ")
+    for k in RegistryHolder.get_registry():
+        print(k)
+
+    class classregisB(ClassRegistree):
+        pass
+    print("After subclassing")
+    for k in RegistryHolder.get_registry():
+        print(k)
+{{< /codeblock >}}
+
+### specification /规格
+或者说是描述规则的模式。 常见的规则包括 and, or, is, not, specification 也需要实现这四个接口。
+
+{{< codeblock "specification.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/specification.py" "specification.py">}}
+# -*- coding: utf-8 -*-
+from abc import abstractmethod
+
+
+class Specification(object):
+
+    def and_specification(self, candidate):
+        raise NotImplementedError()
+
+    def or_specification(self, candidate):
+        raise NotImplementedError()
+
+    def not_specification(self):
+        raise NotImplementedError()
+
+
+class CompositeSpecification(Specification):
+
+    @abstractmethod
+    def is_satisfied_by(self, candidate):
+        pass
+
+    def and_specification(self, candidate):
+        return AndSpecification(self, candidate)
+
+    def or_specification(self, candidate):
+        return OrSpecification(self, candidate)
+
+    def not_specification(self):
+        return NotSpecification(self)
+
+
+class AndSpecification(CompositeSpecification):
+    _one = Specification()
+    _other = Specification()
+
+    def __init__(self, one, other):
+        self._one = one
+        self._other = other
+
+    def is_satisfied_by(self, candidate):
+        return bool(self._one.is_satisfied_by(candidate) and
+                    self._other.is_satisfied_by(candidate))
+
+
+class OrSpecification(CompositeSpecification):
+    _one = Specification()
+    _other = Specification()
+
+    def __init__(self, one, other):
+        self._one = one
+        self._other = other
+
+    def is_satisfied_by(self, candidate):
+        return bool(self._one.is_satisfied_by(candidate) or
+                    self._other.is_satisfied_by(candidate))
+
+
+class NotSpecification(CompositeSpecification):
+    _wrapped = Specification()
+
+    def __init__(self, wrapped):
+        self._wrapped = wrapped
+
+    def is_satisfied_by(self, candidate):
+        return bool(not self._wrapped.is_satisfied_by(candidate))
+
+
+class User:
+
+    def __init__(self, archive=True):
+        self.archive = archive
+
+
+class UserSpecification(CompositeSpecification):
+    def is_satisfied_by(self, candidate):
+        return isinstance(candidate, User)
+
+
+class UserArciveSpecification(CompositeSpecification):
+    def is_satisfied_by(self, candidate):
+        return getattr(candidate, 'archive', True)
+
+
+if __name__ == '__main__':
+    print('specification')
+    niko = User(archive=True)
+    olomeister = User(archive=False)
+
+    the_specification = UserSpecification().\
+        and_specification(UserArciveSpecification())
+
+    print(the_specification.is_satisfied_by(niko))
+    print(the_specification.is_satisfied_by(olomeister))
+
+{{< /codeblock>}}
+
+### state / 状态机
+适用于 状态较少的对象。利用状态来控制对象的表现形式。
+
+{{< codeblock "state.py" "python" "https://github.com/JakubVojvoda/design-patterns-python/blob/master/state/State.py" "state.py">}}
+点击右上角查看代码。
+{{< /codeblock >}}
+
+### strategy / 策略
+用于拆分策略，方便算法的替换
+对于python的类对象，可以使用 `types.MethodType`方法将方法动态注册到实例。
+{{< codeblock "strategy.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/strategy.py" "strategy.py">}}
+# -*- coding: utf-8 -*-
+
+import types
+
+
+class StrategyExample:
+
+    def __init__(self, func=None):
+        self.name = 'Strategy Example 0'
+        if func is not None:
+            self.execute = types.MethodType(func, self)
+
+    def execute(self):
+        print(self.name)
+
+
+def execute_replacement1(self):
+    print(self.name + ' from execute 1')
+
+
+def execute_replacement2(self):
+    print(self.name + ' from execute 2')
+
+
+if __name__ == '__main__':
+    strat0 = StrategyExample()
+
+    strat1 = StrategyExample(execute_replacement1)
+    strat1.name = 'Strategy Example 1'
+
+    strat2 = StrategyExample(execute_replacement2)
+    strat2.name = 'Strategy Example 2'
+
+    strat0.execute()
+    strat1.execute()
+    strat2.execute()
+{{< /codeblock >}}
+
+### template / 模版
+定义算法的框架，细节操作留给后人。
+{{< codeblock "strategy.py" "python" "https://github.com/faif/python-patterns/blob/master/behavioral/template.py" "strategy.py">}}
+点右上角！
+{{< /codeblock >}}
+
+### visitor / 来访者
+{{< codeblock lang="python" >}}
+# -*- coding: utf-8 -*-
+from abc import abstractmethod
+
+
+class ComputerPart:
+
+    @abstractmethod
+    def accept(self, computer_part_visitor):
+        pass
+
+
+class Monitor(ComputerPart):
+
+    def accept(self, computer_part_visitor):
+        computer_part_visitor.visit(self)
+
+
+class KeyBoard(ComputerPart):
+
+    def accept(self, computer_part_visitor):
+        computer_part_visitor.visit(self)
+
+
+class Mouse(ComputerPart):
+
+    def accept(self, computer_part_visitor):
+        computer_part_visitor.visit(self)
+
+
+class Computer(ComputerPart):
+
+    def __init__(self):
+        self.parts = [Monitor(), KeyBoard(), Mouse()]
+
+    def accept(self, computer_part_visitor):
+        for part in self.parts:
+            part.accept(computer_part_visitor)
+
+        computer_part_visitor.visit(self)
+
+
+class ComputerPartVisitor:
+
+    @abstractmethod
+    def visit(self, computer_visitor):
+        pass
+
+
+class ComputerPartDisplayVisitor(ComputerPartVisitor):
+
+    def visit(self, computer_part):
+        print("Display " + computer_part.__class__.__name__)
+
+
+if __name__ == '__main__':
+    computer = Computer()
+    computer.accept(ComputerPartDisplayVisitor())
 {{< /codeblock >}}
