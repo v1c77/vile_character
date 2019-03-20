@@ -131,6 +131,7 @@ def deploy(args):
                     print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
                     subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='deploy hugo')
     parser.add_argument('type', help='auto or manual')
