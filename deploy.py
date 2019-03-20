@@ -12,7 +12,7 @@ import subprocess
 __author__ = 'coderzh'
 
 GIT_REPO = [
-    ['origin',  'master', 'git@github.com:woailuoli993/woailuoli993.github.io.git'],
+    ['origin',  'master', 'git@github.com:v1c77/v1c77.github.io.git'],
     ['coding',  'master', 'git@git.coding.net:Diaoshe/blog.git'],
 ]
 
