@@ -56,7 +56,40 @@ tags:
 
 > 本来还想继续往下写的。 Arch arm 版 linux 4.9 内核升级后 i2c io无法使用。红外模块罢工。正在懊恼中。（于2017.08.27）
 
-###  TODO：未完待续...
+toDOtoDO....
+
+### 续集。 2019-03-22
+
+深圳开始变热了。 我不得不解决每天回家热成狗的问题了。 空调不能停！！！！！！！！！
+
+
+更重要的是， 我找到了能够稳定开启 I2c module 的办法。
+
+安装一些必要的东西：
+
+```bash
+pacman -S git python2 i2c-tools base-devel python2-distribute python2-pip
+```
+
+安装 PIGPIO 支持
+
+```bash
+sudo pip2 install RPi.GPIO
+```
+
+****安装raspi-config****
+```bash
+sudo pacman -S xorg-xrandr libnewt
+git clone https://aur.archlinux.org/raspi-config.git
+cd raspi-config
+makepkg -i
+```
+
+然后使用 Raspi-config 开启I2C
+```
+sudo raspi-config
+```
+![resp-config](/img/arch-resp-config.png)
 
 
 
