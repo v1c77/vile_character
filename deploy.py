@@ -9,7 +9,7 @@ import shutil
 import argparse
 import subprocess
 
-__author__ = 'coderzh'
+__author__ = 'v1c77'
 
 GIT_REPO = [
     ['origin',  'master', 'git@github.com:v1c77/v1c77.github.io.git'],
@@ -18,6 +18,10 @@ GIT_REPO = [
 
 DEPLOY_DIR = 'gh-pages'
 
+
+def run(cmd):
+    print("[+]  "+cmd)
+    return subprocess.call(cmd, shell=True)
 
 class ChDir:
     """Context manager for changing the current working directory"""
@@ -33,9 +37,13 @@ class ChDir:
 
 
 def deploy(args):
+    
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
     public_dir = os.path.join(current_dir, 'public')
+    print("------------------------------------------")
+    print(locals())
+    print("------------------------------------------")
     commit_msg = 'auto update'
     submodule_commit= 'git commit -m "push with master repo"'
 
@@ -45,21 +53,29 @@ def deploy(args):
             shutil.rmtree(public_dir)
 
         if args.type == 'auto':
-            subprocess.call('git add .', shell=True)
-            subprocess.call('git commit -m "{}"'.format(commit_msg), shell=True)
-            subprocess.call('git push', shell=True)
-            subprocess.call('git submodule init', shell=True)
-            subprocess.call('git submodule foreach "git add ."', shell=True)
-            subprocess.call(f'git submodule foreach {submodule_commit}',
-                            shell=True)
-            subprocess.call('git submodule foreach "git push"', shell=True)
+            run('git add .')
+            run(f'git commit -m "{commit_msg}"')
+            run('git push')
+            run('git submodule init')
+            run('git submodule foreach "git add ."')
+            run(f'git submodule foreach {submodule_commit}')
+            run('git submodule foreach "git push"')
+
+        if args.type == 'first':
+            run('rm -rf .git/modules/themes/vile_characher_theme')
+            run('rm -rf ./themes/vile_characher_theme')
+            run('git submodule init')
+            # FIXED https://stackoverflow.com/questions/7605469/git-
+            # submodules-pulling-into-a-new-clone-of-the-super-project
+            run('git submodule update')
+            sys.exit(1)
 
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
                              shell=True, stdout=subprocess.PIPE)
         commit_msg = s.communicate()[0].decode('utf-8').encode(locale.getpreferredencoding())
         # step2 build
-        subprocess.call('hugo -v --cacheDir="./cache"', shell=True)
+        run('hugo -v --cacheDir="./cache"')
 
     deploy_dir = os.path.join(parent_dir, DEPLOY_DIR)
 
@@ -67,14 +83,14 @@ def deploy(args):
     if not os.path.exists(deploy_dir):
         os.makedirs(deploy_dir)
         with ChDir(deploy_dir):
-            subprocess.call('git init', shell=True)
+            run('git init')
             for repo in GIT_REPO:
-                subprocess.call('git remote add {0} {1}'.format(repo[0], repo[2]), shell=True)
+                run(f'git remote add {repo[0]} {repo[2]}')
     elif args.type == 'first':
         with ChDir(deploy_dir):
-            subprocess.call('git init', shell=True)
+            run('git init')
             for repo in GIT_REPO:
-                subprocess.call('git remote add {0} {1}'.format(repo[0], repo[2]), shell=True)
+                run('git remote add {0} {1}'.format(repo[0], repo[2]))
 
     with ChDir(deploy_dir):
         # step4 clean and pull
@@ -137,6 +153,5 @@ if __name__ == '__main__':
     parser.add_argument('type', help='auto or manual')
     parser.add_argument('-t', dest='test', action='store_true', help='for test')
     args = parser.parse_args()
-
     if args.type in ['auto', 'manual', 'first']:
         deploy(args)
