@@ -140,15 +140,13 @@ def deploy(args):
 
         # step7 commit and push
         if len(GIT_REPO) > 0:
-            subprocess.call('git add --all', shell=True)
-            subprocess.call('git commit -a -m "{0}"'.format(commit_msg), shell=True)
+            run('git add --all')
+            run('git commit -a -m "{0}"'.format(commit_msg))
             for repo in GIT_REPO:
                 if repo[0] != 'origin':
-                    print('git push -f {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
-                    subprocess.call('git push -f {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
+                    run('git push -f {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
                 else:
-                    print('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
-                    subprocess.call('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]), shell=True)
+                    run('git push {0} {1}:{2} -u'.format(repo[0], GIT_REPO[0][1], repo[1]))
 
 
 if __name__ == '__main__':
