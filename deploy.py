@@ -1,4 +1,4 @@
-#!/usr/bin python
+#!/usr/env/bin python
 # coding:utf-8
 
 import os
