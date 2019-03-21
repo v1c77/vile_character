@@ -100,24 +100,24 @@ def deploy(args):
         if len(GIT_REPO) > 0:
             print('[+] pull gh-pages...')
             print('git status')
-            subprocess.call('git status', shell=True)
+            run('git status')
             print('git add --all')
-            subprocess.call('git status', shell=True)
+            run('git status')
             print('git fetch {0}'.format(GIT_REPO[0][0]))
-            subprocess.call('git fetch {0}'.format(GIT_REPO[0][0]), shell=True)
+            run('git fetch {0}'.format(GIT_REPO[0][0]))
             # if args.type == 'first':
-                # subprocess.call('git checkout --orphan temp', shell=True)
-                # subprocess.call('git rm --cached -r .', shell=True)
-                # subprocess.call('git clean -fdx', shell=True)
-                # subprocess.call('git branch -D {0}'.format(GIT_REPO[0][1]), shell=True)
-                # subprocess.call('git checkout -b {0}'.format(GIT_REPO[0][1]), shell=True)
+                # run('git checkout --orphan temp')
+                # run('git rm --cached -r .')
+                # run('git clean -fdx')
+                # run('git branch -D {0}'.format(GIT_REPO[0][1]))
+                # run('git checkout -b {0}'.format(GIT_REPO[0][1]))
             # else:
             print('git checkout {0}'.format(GIT_REPO[0][1]))
-            subprocess.call('git checkout {0}'.format(GIT_REPO[0][1]), shell=True)
+            run('git checkout {0}'.format(GIT_REPO[0][1]))
 
             print('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]))
-            subprocess.call('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]), shell=True)
-            subprocess.call('git clean -fdx', shell=True)
+            run('git reset --hard {0}/{1}'.format(GIT_REPO[0][0], GIT_REPO[0][1]))
+            run('git clean -fdx')
 
         # step5 remove all files
         print('[+] remove all files in path {}'.format(deploy_dir))
