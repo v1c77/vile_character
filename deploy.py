@@ -29,10 +29,12 @@ class ChDir:
         self.newPath = os.path.expanduser(new_path)
 
     def __enter__(self):
+        print(f"[*] work dir changed to {self.newPath}")
         self.savedPath = os.getcwd()
         os.chdir(self.newPath)
 
     def __exit__(self, exception_type, exception_value, traceback):
+        print(f"[*] work dir changed back to {self.savedPath}")
         os.chdir(self.savedPath)
 
 
