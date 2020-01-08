@@ -54,23 +54,12 @@ def deploy(args):
         if os.path.exists(public_dir):
             shutil.rmtree(public_dir)
 
-        if args.type == 'auto':
-            run('git add .')
-            run(f'git commit -m "{commit_msg}"')
-            run('git push')
-            run('git submodule init')
-            run('git submodule foreach "git add ."')
-            run(f'git submodule foreach {submodule_commit}')
-            run('git submodule foreach "git push"')
-
         if args.type == 'first':
-            run('rm -rf .git/modules/themes/vile_characher_theme')
-            run('rm -rf ./themes/vile_characher_theme')
+            run('rm -rf theme/*')
             run('git submodule init')
             # FIXED https://stackoverflow.com/questions/7605469/git-
             # submodules-pulling-into-a-new-clone-of-the-super-project
             run('git submodule update')
-            sys.exit(1)
 
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
