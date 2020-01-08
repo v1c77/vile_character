@@ -39,7 +39,6 @@ class ChDir:
 
 
 def deploy(args):
-    
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
     public_dir = os.path.join(current_dir, 'public')
@@ -55,12 +54,12 @@ def deploy(args):
             shutil.rmtree(public_dir)
 
         if args.type == 'first':
-            run('rm -rf theme/*')
+            run('rm -rf themes/*')
             run('git submodule init')
             # FIXED https://stackoverflow.com/questions/7605469/git-
             # submodules-pulling-into-a-new-clone-of-the-super-project
             run('git submodule update')
-            run("ls  theme/")
+            run("ls  themes/")
             sys.exit(1)
 
         # on windows set TERM=msys

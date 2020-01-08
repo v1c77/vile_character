@@ -1,25 +1,14 @@
-# Tranquilpeak
-# Version : 0.4.3-BETA
-# Author : Thibaud Leprêtre
-
-# I STRONGLY recommend you to use a CDN to speed up loading of pages.
-# There is many free CDN like Cloudinary or you can also use indirectly
-# by using services like Google Photos.
-
-# If you want to store images yourself, please read this guidelines:
-# For users, if you only use this theme, put your images directly in `source/assets/images` folder
-# But if you want to add local images, you can put your images directly in `source/assets/images` folder
-# For developpers, if you modify this theme, put your images in `source/images` folder and
-# use grunt task `build` to synchronize assets
+# blog config
+# see more config help on https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/exampleSite/config.toml
 
 baseURL = "http://blog.heyuhua.com"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
 title = "vici'blog"
-theme = "vile_characher_theme"
-disqusShortname = "vic1blog"
+theme = "hugo-tranquilpeak-theme"
+disqusShortname = "vici_blog"
 googleAnalytics = "UA-88015219-1"
-paginate = 8
+paginate = 10
 canonifyurls = true
 
 [permalinks]
@@ -33,17 +22,14 @@ canonifyurls = true
 [author]
   name = "vici"
   bio = "极度选择困难. **懒癌晚期**"
-  job = "Python Developer"
-  location = "ShangHai"
+  job = "software enginer"
+  location = "Shenzhen | Beijing | Shanghai"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   gravatarEmail = "heyuhuade@gmail.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  # picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
-  # Your Twitter username without the @. E.g : thibaudlepretre
-  # twitter = "thibaudlepretre"
-  # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
-  # googlePlus = "+ThibaudLepretre"
+  picture = "http://qiniu.heyuhua.com/head.tiff!little.webp"
+  twitter = "bookerHe"
 
 # Menu Configuration
 [[menu.main]]
@@ -105,7 +91,7 @@ canonifyurls = true
   # dateFormat = "2 January 2006"
 
   # Global keywords configuration. Following keywords will be add to every pages
-  keywords = ["vici", "blog", "heyuhua.com"]
+  keywords = ["vici", "blog", "heyuhua.com", "何育华", "v1c77"]
 
   # Syntax highlighter, possible choice between: "highlight.js" (recommanded) and "prism.js" (experimental)
   # You can comment it to disable syntax highlighting
@@ -141,7 +127,7 @@ canonifyurls = true
   # Current image is on AWS S3 and delivered by AWS CloudFront.
   # Otherwise put your image in folder `static/_images/` (development)  or in `source/assets/images/` if you can't or don't want to build the theme,
   # and use relative url : `your-image.png`
-  coverImage = "cover_2.jpg"
+  coverImage = "http://qiniu.heyuhua.com/India1.little.jpg!huge.webp"
 
   # Display an image gallery at the end of a post which have photos variables (false: disabled, true: enabled)
   imageGallery = true
@@ -206,9 +192,9 @@ canonifyurls = true
     url = "https://plus.google.com/share?url=%s"
 
   [params.header.rightLink]
-    class = ""
-    icon = ""
-    url = "/#about"
+    class = "st-search-show-outputs"
+    icon = "search"
+    url = "/#search"
 
   # Customize link of author avatar in sidebar
   # [params.sidebar.profile]
