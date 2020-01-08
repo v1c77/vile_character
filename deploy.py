@@ -47,8 +47,8 @@ def deploy(args):
     print(locals())
     print("------------------------------------------")
     commit_msg = 'auto update'
-    submodule_commit= 'git commit -m "push with master repo"'
-
+    # no longer submodule commit need.
+    # submodule_commit= 'git commit -m "push with master repo"'
     with ChDir(current_dir):
         # step1 clean
         if os.path.exists(public_dir):
@@ -60,6 +60,8 @@ def deploy(args):
             # FIXED https://stackoverflow.com/questions/7605469/git-
             # submodules-pulling-into-a-new-clone-of-the-super-project
             run('git submodule update')
+            run("ls  theme/")
+            sys.exit(1)
 
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
