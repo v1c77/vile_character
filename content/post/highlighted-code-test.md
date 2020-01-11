@@ -1,16 +1,19 @@
 ---
-title: "highlighted code example"
+title: "代码高亮及板式书写备忘"
 date: 2018-01-16
 categories:
   - develop
 tags:
   - blog
-  - test
-thumbnailImagePosition: left
-thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/highlighted-code-showcase/peak-140.jpg
+  - memo
 ---
 
-Tranquilpeak Hugo theme have its own theme to highlight source code. It's based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
+blog 代码相关功能测试。
+
+- 高亮渲染
+- 代码块切换测试
+- 行号测试
+- 复制粘贴
 <!--more-->
 
 
@@ -1045,4 +1048,29 @@ extension MyClass : Interface {
         return true
     }
 }
+{{< /codeblock >}}
+
+# Dockerfile
+{{< codeblock "goproxy.Dockerfile" "dockerfile" "https://github.com/goproxyio/goproxy/blob/master/Dockerfile" "goproxy.Dockerfile">}}
+FROM golang:alpine AS build
+
+RUN apk add --no-cache -U make git mercurial subversion bzr fossil
+
+COPY . /src/goproxy
+RUN cd /src/goproxy &&\
+    export CGO_ENABLED=0 &&\
+    make
+
+FROM golang:alpine
+
+RUN apk add --no-cache -U git mercurial subversion bzr fossil
+
+COPY --from=build /src/goproxy/bin/goproxy /goproxy
+
+VOLUME /go
+
+EXPOSE 8081
+
+ENTRYPOINT ["/goproxy"]
+CMD []
 {{< /codeblock >}}
