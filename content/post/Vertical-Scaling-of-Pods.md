@@ -16,7 +16,7 @@ keywords:
 
 这里缅怀 gonum社区的一位杰出贡献者.  Sonia Keys. 
 
-Sonia 是一位 业余天文学家，在03年被授予太平洋天文学杰出贡献奖。Golang 狂热爱好者， golang社区 数学及图形相关项目的贡献者。
+Sonia 是一位 业余天文学家，在03年被授予太平洋天文学杰出贡献奖。Golang 狂热爱好者， golang社区 数学及图形相关项目作者。
 
 ------------------------------------------------
 
@@ -183,3 +183,6 @@ type VerticalPodAutoscalerStatus {
 ##### Resource Policy
 
 资源上下限。自动伸缩波动范围 threshold.
+
+
+写到这里应该是差不多了。 后面的实现细节并不设计 resource in-place update 相关内容。

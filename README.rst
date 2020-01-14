@@ -9,6 +9,9 @@
     python ./deploy.py -t first 
 
 
+创建新post
+    
+    hugo new post/<new-blog-name>.md -k post
 -------
 
 License
