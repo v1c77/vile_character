@@ -287,3 +287,55 @@ if !kl.podIsTerminated(pod) {
 
 {{</codeblock>}}
 
+上述流程我们需要关注的是 如下几个流程
+
+>  syncPod  -> kl.containerManager.NewPodContainerManager() -> pcm.Exists(pod) -> kl.containerManager.UpdateQOSCgroups()
+
+
+
+`NewPodContainerManager` 并没有实质性的cgroup操作，紧跟着的判断 `Exists(pod)`-> `GetPodContainerName`函数调用会尝试获取 当前 pod应当存在的 cgroup路径。并检查 pod 对应cgroup的存在。
+
+如果发现不存在  对应cgroup 则进入创建流程 【创建cgroup 发生在 pod其他资源创建前】，  即 `UpdateQOSChroups`:
+
+还函数会进行：
+
+- `setCPUCgroupConfig`  比如说保证 BestEffort  pod cpu share =2; 计算 Burst.slice 路径 cpu shares 设置应该为  **所有 burstable_pod_CPU_request** 的和。
+
+* `setMemoryReserve` 取决于是否开启了特性功能 **QOSReserved**, 该功能会为  **Burstable** 和 **BestEffort** pod slice 设置 可用内存上限， 基于实时计算的各个类型的 pod的 内存使用状况。  【暂定默认关闭】
+* `setHugePagesConfig` 根据功能开关设置 hugepage 用量。【暂定默认关闭】
+
+上述动作完成后 将会执行 pod 粒度 的 cgroup  创建， 更新操作 `EnsureExists` 
+
+
+
+ {{< codeblock "pod_container_manager_linux.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/pkg/kubelet/cm/pod_container_manager_linux.go#L76" "pkg/kubelet/cm/pod_container_manager_linux.go#L76" >}}
+// EnsureExists takes a pod as argument and makes sure that
+// pod cgroup exists if qos cgroup hierarchy flag is enabled.
+// If the pod level container doesn't already exist it is created.
+func (m *podContainerManagerImpl) EnsureExists(pod *v1.Pod) error {
+	podContainerName, _ := m.GetPodContainerName(pod)
+	// check if container already exist
+	alreadyExists := m.Exists(pod)
+	if !alreadyExists {
+		// Create the pod container
+		containerConfig := &CgroupConfig{
+			Name:               podContainerName,
+			ResourceParameters: ResourceConfigForPod(pod, m.enforceCPULimits, m.cpuCFSQuotaPeriod),
+		}
+		if utilfeature.DefaultFeatureGate.Enabled(kubefeatures.SupportPodPidsLimit) && m.podPidsLimit > 0 {
+			containerConfig.ResourceParameters.PidsLimit = &m.podPidsLimit
+		}
+		if err := m.cgroupManager.Create(containerConfig); err != nil {
+			return fmt.Errorf("failed to create container for %v : %v", podContainerName, err)
+		}
+	}
+	// Apply appropriate resource limits on the pod container
+	// Top level qos containers limits are not updated
+	// until we figure how to maintain the desired state in the kubelet.
+	// Because maintaining the desired state is difficult without checkpointing.
+	if err := m.applyLimits(pod); err != nil {
+		return fmt.Errorf("failed to apply resource limits on container for %v : %v", podContainerName, err)
+	}
+	return nil
+}
+{{</codeblock>}}
