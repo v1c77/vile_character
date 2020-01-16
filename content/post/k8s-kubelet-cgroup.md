@@ -493,10 +493,58 @@ type LinuxPodSandboxConfig struct {
 
 ## 其他相关特性
 
+### CPUSet
 
+ 当 VM 与 Pod 进行混合编排， 虚拟化语义中的 vcpu pin  可以使用  cgroup 的 cpu_set 作为 功能映射
 
-## CPUSet 管理
+k8s 中 feature Gate   `CPUManager ` 负责 管理  容器的 cpu set 设置  该功能 在 k8s 1.8 进入 alpha, 在 1.10 后 beta， 目前 （k8s 1.17） 仍然属于 beta 状态。 
 
+#### CPU Manager工作流
+
+CPU Manager为满足条件的Container分配指定的CPUs时，会尽量按照CPU Topology来分配，也就是考虑CPU Affinity，按照如下的优先顺序进行CPUs选择：（Logic CPUs就是Hyperthreads）
+
+1.  如果Container请求的Logic CPUs数量不小于单块CPU Socket中Logci CPUs数量，那么会优先把整块CPU Socket中的Logic CPUs分配给该Container。 
+2.  如果Container剩余请求的Logic CPUs数量不小于单块物理CPU Core提供的Logic CPUs数量，那么会优先把整块物理CPU Core上的Logic CPUs分配给该Container。 
+3.  Container剩余请求的Logic CPUs则从按照如下规则排好序的Logic CPUs列表中选择： 
+   - number of CPUs available on the same socket
+   - number of CPUs available on the same core
+
+#### Discovering CPU topology
+
+CPU Manager能正常工作的前提，是发现Node上的CPU Topology，Discovery这部分工作是由cAdvisor完成的。
+
+在cAdvisor的MachineInfo中通过Topology会记录cpu和mem的Topology信息。其中Topology的每个Node对象就是对应一个CPU Socket。
+
+#### 创建容器
+
+对于满足前面提到的满足static policy的Container创建时，kubelet会为其按照约定的cpu affinity来为其挑选最优的CPU Set。Container的创建时CPU Manager工作流程大致如下：
+
+1. Kuberuntime调用容器运行时去创建该Container。
+
+2. Kuberuntime将该Container交给CPU Manager处理。
+
+3. CPU Manager为Container按照static policy逻辑进行处理。
+
+4. CPU Manager从当前Shared Pool中挑选“最佳”Set拓扑结构的CPU，对于不满足Static Policy的Contianer，则返回Shared Pool中所有CPUS组成的Set。
+
+5. CPU Manager将对该Container的CPUs分配情况记录到Checkpoint State中，并且从Shared Pool中删除刚分配的CPUs。
+
+6. CPU Manager再从state中读取该Container的CPU分配信息，然后通过UpdateContainerResources cRI接口将其更新到Cpuset Cgroups中，包括对于非Static Policy Container。
+
+7. Kuberuntime调用容器运行时Start该容器。
+
+   
+该过程入口处于 上一章节的 Container level 中的 `startContainer` 函数：
+{{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/pkg/kubelet/kuberuntime/kuberuntime_container.go#L134" "pkg/kubelet/kuberuntime/kuberuntime_container.goo#L134" >}}
+
+	// TODO(yuhua): 设置 CPUset
+	err = m.internalLifecycle.PreStartContainer(pod, container, containerID)
+	if err != nil {
+		s, _ := grpcstatus.FromError(err)
+		m.recordContainerEvent(pod, container, containerID, v1.EventTypeWarning, events.FailedToStartContainer, "Internal PreStartContainer hook failed: %v", s.Message())
+		return s.Message(), ErrPreStartHook
+	}
+{{</codeblock>}}
 
 
 
@@ -506,3 +554,9 @@ type LinuxPodSandboxConfig struct {
 ## 写在最后
 
   libvirt 已经实现了完整的 cgroup 抽象， 但是缺少完整的 cgroup 管理流程，如果想要通过 cgroup将 vm  资源抽象 并与  Pod 的资源做统一管理， 我们在前端 （kubelet） 及  对应的 后端 （VRI） 设计完整的   cgroup 生命周期管理。
+
+
+### 参考:
+
+1. [  k8s ](https://github.com/kubernetes/kubernetes)
+2. [  cpu manager ](https://cloud.tencent.com/developer/article/1402119)
