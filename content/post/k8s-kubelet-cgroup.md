@@ -1,6 +1,6 @@
 ---
 
-title: "kubelet Cgroup 管理流程"
+title: "从kubelet Cgroup 管理流程入手"
 date: 2020-01-14T11:35:58+08:00
 categories:
 - develop
@@ -339,3 +339,170 @@ func (m *podContainerManagerImpl) EnsureExists(pod *v1.Pod) error {
 	return nil
 }
 {{</codeblock>}}
+
+上述代码中 `m.cgroupManager.Create(containerConfig` 可以完成 pod 级别的 cgroup创建， 至此我们的 pod cgroup container 已经初具雏形。
+
+```shell
+[root@node1]# tree /sys/fs/cgroup/cpu -d
+/sys/fs/cgroup/cpu
+├── kubepods
+│   ├── besteffort
+│   │   ├── pode098d78945a4d359594f9c27066aa202
+│   │   │   ├── 5fca7a73d4b5c7e7a6c35415e2bfeb5533c5fc1d1b4aa80bc4cb641213ee29a3
+│   │   │   └── b10831a7a2cf4e96ff6b186396e9e393e5b02aa8c447e988cc6cca5172fc5c89
+│   │   └── podfc7fbc35-bb79-4a33-80a0-371d438f221e
+│   │       ├── 07703a4a76b926c8432c3a8ab50b69b8dfd2891733a09d830fc1a08f8a8e0a1c
+│   │       └── 3a7550ae2bd7784bc7f74fa0288d361e6d569595a0ba237bb63cdd5468073316
+│   └── burstable
+│       ├── pod420984c2d6d62f72216bba6857bc368b
+│       │   ├── 5f734d0677fb4dd0f3e3dd3647be6ad19ec728fd3e28860c6023ea6efb7fc331
+│       │   └── 93cd418eaddf86be58b200c109674a36cc04fee0eccfae4a7838a1b0e6a4f978
+│       ├── pod4ebb633e-f8ba-43ee-94c7-1cf8c9105555
+│       │   └── 1bc40d00174d3ea84f4fce14d734a45115e72e4af394bd7d684d9691e7749995
+│       ├── podcd4bc68a-faf3-4c08-8d07-57d25a68ee1b
+│       │   ├── 62ba8b7c6e1afc62d16b65e0d0ae9f82254260815025ecb6c863fa82c9ea5e8e
+│       │   └── c7aca0c0fdf230a6378e3325f03242ff561ec95e7f62b3b852f2877af0235792
+│       ├── podd4f2a7d434e44edd8e4a0960111bda9f
+│       │   ├── 08d95544fcd3a5631c5a6a550d42bcddf8319cfb1fbe7f2482d969fc19356466
+│       │   └── a7a39f33fddce54c64c4a6d0bf4b499fe3d6b3d7c7f5fc0d54445ade5cad24b1
+│       ├── pode8486b59c2c8408b07026a560746b02c
+│       │   ├── b9fb9af9f1c5991786c6457f5b33c90ee8e33a3d68605d409b7a2c30d5565699
+│       │   └── f7f6773069032faa45ef3fc62fe337127fe40795ebc3758d03e149376d18d3da
+│       ├── pode86c3e73-a96e-4ae8-9ff6-fd401cf5c9aa
+│       │   ├── 4ad31b5ea0ad5743eeb67628c3bf9275d2131f2132a4bbe7081c05f63c6604ea
+│       │   └── 5f31deed41c58dbc0a0530b964926968d272e846cf9d91452c40797ace7fb90a
+│       └── podf27baf8c-6c71-4f3a-9445-0c63eb33d586
+│           ├── 1ae1d0d1fb0d44652c8ad8ef2d782628ec04a7b0e6e5718ea6788af178505ba2
+│           └── 5e898be28b1cb5ccb7f9f52eddee06c114d7d42b951b256da5544128093216be
+├── machine.slice
+│   └── machine-qemu\\x2d18\\x2dvm123.scope
+│       ├── emulator
+│       └── vcpu0
+├── system.slice
+└── user.slice
+```
+> `machine.slice` 是 libvirt 针对每个 qemu 进程生成的 cgroup管理空间.  我们意在将其纳入 k8s cgoup 统计范围内。
+
+
+
+### Container level 
+
+上述 Node level 发生在 kubelet 的 SyncPod 函数执行过程中， 同样的， container 相关的 cgroup创建 也是在这之后。
+
+故事仍然要从pod 创建请求开始， 从 入口处的 kubelet   `syncLoop`  -> `syncLoopIteration` -> `HandlePodAddtions` -> `dispatchWork` -> `UpdatePod` -> `managePodLoop` -> `SyncPod` -> `kl.containerRuntime.SyncPod`
+
+进入 真正创建  container流程，
+
+{{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/ppkg/kubelet/kuberuntime/kuberuntime_manager.go#L640" "pkg/kubelet/kuberuntime/kuberuntime_manager.go#L640" >}}
+// SyncPod syncs the running pod into the desired pod by executing following steps:
+//
+//  1. Compute sandbox and container changes.
+//  2. Kill pod sandbox if necessary.
+//  3. Kill any containers that should not be running.
+//  4. Create sandbox if necessary.
+//  5. Create ephemeral containers.
+//  6. Create init containers.
+//  7. Create normal containers.
+// TODO(yuhua): 创建container 之处。
+func (m *kubeGenericRuntimeManager) SyncPod(pod *v1.Pod, podStatus *kubecontainer.PodStatus, pullSecrets []v1.Secret, backOff *flowcontrol.Backoff) (result kubecontainer.PodSyncResult)
+{{</codeblock>}}
+
+containerRuntime.SyncPod 主要内容涉及到 如下几个步骤
+
+- 计算 sandbox 和 container 变化
+- 删除无用sandbox
+- 删除无用 容器
+- 创建沙箱
+- 创建 一次性容器
+- 创建 初始化容器
+- 创建 其他容器。
+
+上述前4步都与 cgroup无关，这里最后的三个创建步骤 都使用了 一些公用逻辑。
+
+{{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/pkg/kubelet/kuberuntime/kuberuntime_manager.go#L780" "pkg/kubelet/kuberuntime/kuberuntime_manager.go#L780" >}}
+// Helper containing boilerplate common to starting all types of containers.
+// typeName is a label used to describe this type of container in log messages,
+// currently: "container", "init container" or "ephemeral container"
+start := func(typeName string, container *v1.Container) error {
+	startContainerResult := kubecontainer.NewSyncResult(kubecontainer.StartContainer, container.Name)
+	result.AddSyncResult(startContainerResult)
+
+isInBackOff, msg, err := m.doBackOff(pod, container, podStatus, backOff)
+if isInBackOff {
+	startContainerResult.Fail(err, msg)
+	klog.V(4).Infof("Backing Off restarting %v %+v in pod %v", typeName, container, format.Pod(pod))
+	return err
+}
+
+klog.V(4).Infof("Creating %v %+v in pod %v", typeName, container, format.Pod(pod))
+// NOTE (aramase) podIPs are populated for single stack and dual stack clusters. Send only podIPs.
+if msg, err := m.startContainer(podSandboxID, podSandboxConfig, container, pod, podStatus, pullSecrets, podIP, podIPs); err != nil {
+	startContainerResult.Fail(err, msg)
+	// known errors that are logged in other places are logged at higher levels here to avoid
+	// repetitive log spam
+	switch {
+	case err == images.ErrImagePullBackOff:
+		klog.V(3).Infof("%v start failed: %v: %s", typeName, err, msg)
+	default:
+		utilruntime.HandleError(fmt.Errorf("%v start failed: %v: %s", typeName, err, msg))
+	}
+	return err
+}
+{{</codeblock>}}
+
+这里只需要关注 `startContainer` 相关逻辑：
+
+{{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/pkg/kubelet/kuberuntime/kuberuntime_container.go#L95" "pkg/kubelet/kuberuntime/kuberuntime_container.go#L95" >}}
+// startContainer starts a container and returns a message indicates why it is failed on error.
+// It starts the container through the following steps:
+// * pull the image
+// * create the container
+// * start the container
+// * run the post start lifecycle hooks (if applicable)
+func (m *kubeGenericRuntimeManager) startContainer(podSandboxID string, podSandboxConfig *runtimeapi.PodSandboxConfig, container *v1.Container, pod *v1.Pod, podStatus *kubecontainer.PodStatus, pullSecrets []v1.Secret, podIP string, podIPs []string) (string, error)
+{{</codeblock>}}
+
+这里的 `podSandboxConfig` 包含以下字段：
+
+```go
+Linux                *LinuxPodSandboxConfig `protobuf:"bytes,8,opt,name=linux,proto3" json:"linux,omitempty"`
+```
+
+{{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/staging/src/k8s.io/cri-api/pkg/apis/runtime/v1alpha2/api.pb.go#L796" "staging/src/k8s.io/cri-api/pkg/apis/runtime/v1alpha2/api.pb.go#L796" >}}
+// LinuxPodSandboxConfig holds platform-specific configurations for Linux
+// host platforms and Linux-based containers.
+type LinuxPodSandboxConfig struct {
+	// Parent cgroup of the PodSandbox.
+	// The cgroupfs style syntax will be used, but the container runtime can
+	// convert it to systemd semantics if needed.
+	CgroupParent string `protobuf:"bytes,1,opt,name=cgroup_parent,json=cgroupParent,proto3" json:"cgroup_parent,omitempty"`
+	// LinuxSandboxSecurityContext holds sandbox security attributes.
+	SecurityContext *LinuxSandboxSecurityContext `protobuf:"bytes,2,opt,name=security_context,json=securityContext,proto3" json:"security_context,omitempty"`
+	// Sysctls holds linux sysctls config for the sandbox.
+	Sysctls              map[string]string `protobuf:"bytes,3,rep,name=sysctls,proto3" json:"sysctls,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+{{</codeblock>}}
+
+这里可以看到  CgroupParent 限制了 cgroup创建的 父路径。 至此 k8s 层的cgroup创建过程结束。
+
+创建结束后的  cgroup拓扑参考 Node章节结果。
+
+
+
+## 其他相关特性
+
+
+
+## CPUSet 管理
+
+
+
+
+
+
+
+## 写在最后
+
+  libvirt 已经实现了完整的 cgroup 抽象， 但是缺少完整的 cgroup 管理流程，如果想要通过 cgroup将 vm  资源抽象 并与  Pod 的资源做统一管理， 我们在前端 （kubelet） 及  对应的 后端 （VRI） 设计完整的   cgroup 生命周期管理。
