@@ -561,3 +561,4 @@ CPU Manager能正常工作的前提，是发现Node上的CPU Topology，Discover
 
 1. [  k8s ](https://github.com/kubernetes/kubernetes)
 2. [  cpu manager ](https://cloud.tencent.com/developer/article/1402119)
+3. [ libvirt cgroups ](https://libvirt.org/cgroups.html)
