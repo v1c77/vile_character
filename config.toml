@@ -22,7 +22,7 @@ canonifyurls = true
 [author]
   name = "vici"
   bio = "极度选择困难. **懒癌晚期**"
-  job = "software enginer"
+  job = "software engineer"
   location = "Shenzhen | Beijing | Shanghai"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   gravatarEmail = "heyuhuade@gmail.com"
