@@ -534,6 +534,7 @@ CPU Manager能正常工作的前提，是发现Node上的CPU Topology，Discover
 7. Kuberuntime调用容器运行时Start该容器。
 
    
+
 该过程入口处于 上一章节的 Container level 中的 `startContainer` 函数：
 {{< codeblock "kuberuntime_manager.go" "golang" "https://github.com/kubernetes/kubernetes/blob/v1.17.0/pkg/kubelet/kuberuntime/kuberuntime_container.go#L134" "pkg/kubelet/kuberuntime/kuberuntime_container.goo#L134" >}}
 
@@ -553,7 +554,7 @@ CPU Manager能正常工作的前提，是发现Node上的CPU Topology，Discover
 
 ## 写在最后
 
-  libvirt 已经实现了完整的 cgroup 抽象， 但是缺少完整的 cgroup 管理流程，如果想要通过 cgroup将 vm  资源抽象 并与  Pod 的资源做统一管理， 我们在前端 （kubelet） 及  对应的 后端 （VRI） 设计完整的   cgroup 生命周期管理。
+  libvirt 已经实现了完整的 cgroup 抽象， 但是缺少完整的 cgroup 管理流程，如果想要通过 cgroup将 vm  资源抽象 并与  Pod 的资源做统一管理， 我们在前端 （kubelet） 及  对应的 后端 （VRI） 设计完整的   cgroup 操作流程。
 
 
 ### 参考:
