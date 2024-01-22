@@ -4,7 +4,7 @@
 baseURL = "http://blog.heyuhua.com"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
-title = "vici'blog"
+title = "何育华的日记"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "vic1blog"
 googleAnalytics = "UA-88015219-1"
