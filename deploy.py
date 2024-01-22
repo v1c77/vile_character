@@ -13,7 +13,7 @@ __author__ = 'v1c77'
 
 GIT_REPO = [
     ['origin',  'master', 'git@github.com:v1c77/v1c77.github.io.git'],
-    ['coding',  'master', 'git@git.coding.net:Diaoshe/blog.git'],
+    ['coding',  'master', 'git@e.coding.net:Diaoshe/blog.git'],
 ]
 
 DEPLOY_DIR = 'gh-pages'
